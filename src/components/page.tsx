@@ -1,8 +1,55 @@
-import type { Filter } from "../services/seshEngine"; // Assuming this path is correct
-import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import DurationWheel from "./DurationWheel"; // Import the new component
+import { Filter } from "../services/seshEngine";
 
+  // Selector component (Keep as is)
+  const Selector = ({ label, value, options, onChange }: { label: string; value: string; options: string[]; onChange: (value: string) => void }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleOptionClick = (option: string) => {
+      onChange(option);
+      setIsOpen(false);
+    };
+
+    return (
+      <div>
+        {!isOpen ? (
+          <div className="bg-[#3a3330] rounded-lg p-4 flex flex-col" onClick={() => setIsOpen(true)}>
+            <span className="text-gray-300 text-sm">{label}</span>
+            <span className="text-white text-lg font-medium truncate">{value}</span>
+          </div>
+        ) : (
+          <motion.div
+            className="fixed inset-0 bg-[#2a2320] z-10 pt-8 pb-16"
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ type: "spring", damping: 30, stiffness: 300 }}
+          >
+            <div className="flex justify-center py-2 sticky top-0 bg-[#2a2320] z-20 mb-4">
+              <div className="w-10 h-1 bg-white/30 rounded-full cursor-pointer" onClick={() => setIsOpen(false)} />
+            </div>
+            <div className="px-4 overflow-y-auto h-full">
+              <h2 className="text-lg font-medium mb-3">Select {label}</h2>
+              <div className="grid grid-cols-1 gap-4">
+                {options.map((option) => (
+                  <div
+                    key={option}
+                    className={`p-4 rounded-lg cursor-pointer ${option === value ? "bg-[#2196f3] text-white" : "bg-[#3a3330] text-gray-300"}`}
+                    onClick={() => handleOptionClick(option)}
+                  >
+                    {option}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </div>
+    );
+  };
+  
 export default function Page() {
   const [duration, setDuration] = useState(10); // Default to 10 as per original steps 5, 10, 15
   const [menuOpen, setMenuOpen] = useState(false);
@@ -10,8 +57,6 @@ export default function Page() {
 
   // --- Swipe Gesture Logic (Keep as is) ---
   useEffect(() => {
-    // Ensure window is defined (for SSR frameworks like Next.js)
-    if (typeof window !== 'undefined') {
         const handleTouchStart = (e: TouchEvent) => {
             // Only track swipes if not interacting with the wheel or other interactive elements
             if ((e.target as HTMLElement)?.closest('.duration-wheel-container')) {
@@ -41,7 +86,7 @@ export default function Page() {
 
             if (diff < -50 && menuOpen && (canSwipeDown || targetIsDragHandle)) {
                  // Check if touch started near the top drag handle area for more leniency
-                const initialTouchOnHandleArea = startY < 100; // Allow swipe down if starting near the top handle
+                const initialTouchOnHandleArea = startY !== null && startY < 100; // Allow swipe down if starting near the top handle
 
                 if (canSwipeDown || initialTouchOnHandleArea || targetIsDragHandle) {
                      setMenuOpen(false);
@@ -60,20 +105,9 @@ export default function Page() {
             document.removeEventListener("touchstart", handleTouchStart);
             document.removeEventListener("touchmove", handleTouchMove);
         };
-    }
   }, [menuOpen]); // Re-run when menuOpen changes to potentially adjust logic if needed
 
-  // --- Menu states (Keep as is) ---
-  const [type, setType] = useState("Yin");
-  const [level, setLevel] = useState("Intermediate 1");
-  const [voice, setVoice] = useState("Selama");
-  const [instruction, setInstruction] = useState("Full");
-  const [videoModel, setVideoModel] = useState("Alexa");
-  const [viewPoses, setViewPoses] = useState("0 Liked, 0 Disliked");
-  const [transitionSpeed, setTransitionSpeed] = useState("Default");
-  const [holdLengths, setHoldLengths] = useState("Auto");
-  const [savasana, setSavasana] = useState("None");
-  const [musicStyle, setMusicStyle] = useState("Alt Beats");
+
   const [protocolName, setProtocolName] = useState<Filter["protocolName"]>("Short Maximal Hangs");
   const [intensityLevel, setIntensityLevel] = useState<Filter["intensityLevel"]>("Low");
 
@@ -82,13 +116,7 @@ export default function Page() {
     setMenuOpen(!menuOpen);
   };
 
-  // Selector component (Keep as is)
-  const Selector = ({ label, value, onClick }: { label: string; value: string; onClick?: () => void }) => (
-    <div className="bg-[#3a3330] rounded-lg p-4 flex flex-col cursor-pointer" onClick={onClick}> {/* Added cursor-pointer */}
-      <span className="text-gray-300 text-sm">{label}</span>
-      <span className="text-white text-lg font-medium truncate">{value}</span>
-    </div>
-  );
+
 
   return (
     <div className="relative h-screen w-full bg-[#1a1512] text-white overflow-hidden">
@@ -150,30 +178,48 @@ export default function Page() {
               <div className="mb-6">
                 <h2 className="text-lg font-medium mb-3">PRACTICE</h2>
                 <div className="grid grid-cols-2 gap-4">
-                  <Selector label="Type" value={type} />
+                  {/* <Selector label="Type" value={type} />
                   <Selector label="Level" value={level} />
                   <Selector label="Voice" value={voice} />
                   <Selector label="Instruction" value={instruction} />
-                  <Selector label="Video Model" value={videoModel} />
-                  <Selector label="Protocol Name" value={protocolName} />
-                  <Selector label="Intensity Level" value={intensityLevel} />
-                  <Selector label="View Poses" value={viewPoses} />
+                  <Selector label="Video Model" value={videoModel} /> */}
+                  <Selector
+                    label="Protocol Name"
+                    value={protocolName}
+                    options={[
+                      "Short Maximal Hangs",
+                      "Longer Hangs (Strength-Endurance)",
+                      "Classic 7:3 Repeaters",
+                      "6:10 Heavy Repeaters",
+                      "10:5 Repeaters",
+                      "Frequent Low-Intensity Hangs (e.g., Abrahangs)",
+                      "Active Recovery Hangs",
+                    ]}
+                    onChange={(value) => setProtocolName(value as Filter["protocolName"])}
+                  />
+                  <Selector
+                    label="Intensity Level"
+                    value={intensityLevel}
+                    options={["Low", "Medium", "High"]}
+                    onChange={(value) => setIntensityLevel(value as Filter["intensityLevel"])}
+                  />
+                  {/* <Selector label="View Poses" value={viewPoses} /> */}
                 </div>
               </div>
 
               <div className="mb-6">
                 <h2 className="text-lg font-medium mb-3">TIMING</h2>
                 <div className="grid grid-cols-2 gap-4">
-                  <Selector label="Transition Speed" value={transitionSpeed} />
+                  {/* <Selector label="Transition Speed" value={transitionSpeed} />
                   <Selector label="Hold Lengths" value={holdLengths} />
-                  <Selector label="Savasana" value={savasana} />
+                  <Selector label="Savasana" value={savasana} /> */}
                 </div>
               </div>
 
               <div className="mb-6">
                 <h2 className="text-lg font-medium mb-3">MUSIC</h2>
                 <div className="grid grid-cols-2 gap-4">
-                  <Selector label="Style" value={musicStyle} />
+                  {/* <Selector label="Style" value={musicStyle} /> */}
                 </div>
               </div>
             </div>
@@ -198,8 +244,26 @@ export default function Page() {
             {/* Collapsed menu content */}
             <div className="px-4 pb-4">
               <div className="grid grid-cols-2 gap-4 mb-4">
-                <Selector label="Protocol Name" value={protocolName} />
-                <Selector label="Intensity Level" value={intensityLevel} />
+                <Selector
+                  label="Protocol Name"
+                  value={protocolName}
+                  options={[
+                    "Short Maximal Hangs",
+                    "Longer Hangs (Strength-Endurance)",
+                    "Classic 7:3 Repeaters",
+                    "6:10 Heavy Repeaters",
+                    "10:5 Repeaters",
+                    "Frequent Low-Intensity Hangs (e.g., Abrahangs)",
+                    "Active Recovery Hangs",
+                  ]}
+                  onChange={(value) => setProtocolName(value as Filter["protocolName"])}
+                />
+                <Selector
+                  label="Intensity Level"
+                  value={intensityLevel}
+                  options={["Low", "Medium", "High"]}
+                  onChange={(value) => setIntensityLevel(value as Filter["intensityLevel"])}
+                />
               </div>
 
               {/* Start button */}
