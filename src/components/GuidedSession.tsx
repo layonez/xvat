@@ -279,78 +279,79 @@ export default function GuidedSession({
      )
   }
 
-
+  // Wrap the entire component in a flex container with column direction and justify-between to position elements at the top and bottom
   return (
-    <div className="h-screen w-full bg-[#1a1512] text-white flex flex-col items-center justify-center p-4">
-      {/* Total Time Remaining */}
-      <div className="absolute top-4 right-4 text-lg text-gray-400">
-        Total Left: {formatTime(sessionState.totalTimeLeft)}
-      </div>
+    <div className="h-screen w-full bg-[#1a1512] text-white flex flex-col justify-between p-4">
+      {/* Top Section */}
+      <div>
+        {/* Total Time Remaining */}
+        <div className="text-lg text-gray-400 h-6">
+          Total Left: {formatTime(sessionState.totalTimeLeft)}
+        </div>
 
         {/* Main Content */}
         <motion.div
-            key={sessionState.currentExerciseIndex + sessionState.currentPhase} // Re-animate on exercise or phase change
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center w-full max-w-md" // Added max-width
+          key={sessionState.currentExerciseIndex + sessionState.currentPhase} // Re-animate on exercise or phase change
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center w-full max-w-md mx-auto" // Center content horizontally
         >
-            {sessionState.currentPhase !== "FINISHED" && currentExercise && (
+          {sessionState.currentPhase !== "FINISHED" && currentExercise && (
             <>
-                {/* Current Phase Indicator */}
-                <h2 className={`text-3xl font-bold mb-4 ${phaseColor}`}>
-                    {phaseText}
-                </h2>
+              {/* Current Phase Indicator */}
+              <h2 className={`text-3xl font-bold mb-4 ${phaseColor}`}>
+                {phaseText}
+              </h2>
 
-                {/* Exercise Details */}
-                <div className="mb-4 bg-gray-800 p-4 rounded-lg shadow-md">
-                    <h1 className="text-xl font-semibold mb-2">{currentExercise.GripType}</h1>
-                    <p className="text-md text-gray-300">Edge: {currentExercise.EdgeType}</p>
-                    <p className="text-md text-gray-300">Set: {sessionState.currentSet} / {currentExercise.Sets}</p>
-                    <p className="text-md text-gray-300">Rep: {sessionState.currentRep} / {currentExercise.Reps}</p>
-                     <p className="text-sm text-gray-400 mt-1">({currentExercise.IntensityModifier})</p>
-                </div>
+              {/* Exercise Details */}
+              <div className="mb-4 bg-gray-800 p-4 rounded-lg shadow-md">
+                <h1 className="text-xl font-semibold mb-2">{currentExercise.GripType}</h1>
+                <p className="text-md text-gray-300">Edge: {currentExercise.EdgeType}</p>
+                <p className="text-md text-gray-300">Set: {sessionState.currentSet} / {currentExercise.Sets}</p>
+                <p className="text-md text-gray-300">Rep: {sessionState.currentRep} / {currentExercise.Reps}</p>
+                <p className="text-sm text-gray-400 mt-1">({currentExercise.IntensityModifier})</p>
+              </div>
 
-                {/* Phase Timer */}
-                 <div className={`text-7xl font-bold my-6 ${phaseColor}`}>
-                    {formatTime(sessionState.phaseTimeLeft)}
-                </div>
+              {/* Phase Timer */}
+              <div className={`text-7xl font-bold my-6 ${phaseColor}`}>
+                {formatTime(sessionState.phaseTimeLeft)}
+              </div>
 
-                {/* Next Up Info (Optional but helpful) */}
-                {sessionState.currentPhase === "REST_HANG" && (
-                    <p className="text-gray-400 mt-4">Next: Hang ({currentExercise.HangDuration_s}s)</p>
-                )}
-                 {sessionState.currentPhase === "REST_SET" && (
-                    <p className="text-gray-400 mt-4">Next: Set {sessionState.currentSet} - Rep 1 (Hang {currentExercise.HangDuration_s}s)</p>
-                )}
-                 {sessionState.currentPhase === "PREP" && sessionState.currentExerciseIndex > 0 && (
-                     <p className="text-gray-400 mt-4">Previous: {validExercises[sessionState.currentExerciseIndex - 1].GripType} Completed</p>
-                 )}
-
-
+              {/* Next Up Info (Optional but helpful) */}
+              {sessionState.currentPhase === "REST_HANG" && (
+                <p className="text-gray-400 mt-4">Next: Hang ({currentExercise.HangDuration_s}s)</p>
+              )}
+              {sessionState.currentPhase === "REST_SET" && (
+                <p className="text-gray-400 mt-4">Next: Set {sessionState.currentSet} - Rep 1 (Hang {currentExercise.HangDuration_s}s)</p>
+              )}
+              {sessionState.currentPhase === "PREP" && sessionState.currentExerciseIndex > 0 && (
+                <p className="text-gray-400 mt-4">Previous: {validExercises[sessionState.currentExerciseIndex - 1].GripType} Completed</p>
+              )}
             </>
-            )}
+          )}
 
-            {/* Finished State */}
-            {sessionState.currentPhase === "FINISHED" && (
-                <div className="text-center">
-                    <h1 className="text-4xl font-bold text-green-500 mb-6">Workout Finished!</h1>
-                    <p className="text-xl text-gray-300">Great job!</p>
-                     {/* Optionally add a button to go back or see summary */}
-                     <button
-                         onClick={onSessionComplete} // Or navigate elsewhere
-                         className="mt-8 bg-[#2196f3] text-white py-2 px-6 rounded-full text-lg font-medium hover:bg-blue-700 transition-colors"
-                     >
-                        Done
-                     </button>
-                </div>
-            )}
+          {/* Finished State */}
+          {sessionState.currentPhase === "FINISHED" && (
+            <div className="text-center">
+              <h1 className="text-4xl font-bold text-green-500 mb-6">Workout Finished!</h1>
+              <p className="text-xl text-gray-300">Great job!</p>
+              {/* Optionally add a button to go back or see summary */}
+              <button
+                onClick={onSessionComplete} // Or navigate elsewhere
+                className="mt-8 bg-[#2196f3] text-white py-2 px-6 rounded-full text-lg font-medium hover:bg-blue-700 transition-colors"
+              >
+                Done
+              </button>
+            </div>
+          )}
         </motion.div>
+      </div>
 
-      {/* Controls */}
+      {/* Bottom Section */}
       {sessionState.currentPhase !== "FINISHED" && (
-        <div className="mt-8 flex space-x-4">
-           <button
+        <div className="mt-8 flex space-x-4 justify-center">
+          <button
             onClick={togglePause}
             className={`py-2 px-6 rounded-full text-lg font-medium transition-colors ${
               sessionState.isPaused
@@ -364,16 +365,16 @@ export default function GuidedSession({
             onClick={handleFinishEarly}
             className="bg-red-600 hover:bg-red-700 text-white py-2 px-6 rounded-full text-lg font-medium transition-colors"
             disabled={sessionState.isPaused} // Disable if already paused to avoid confusion
-           >
+          >
             Finish Early
-           </button>
-           {/* New Skip Button */}
-           <button
+          </button>
+          {/* New Skip Button */}
+          <button
             onClick={skipExercise}
             className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-full text-lg font-medium transition-colors"
-           >
+          >
             Skip Exercise
-           </button>
+          </button>
         </div>
       )}
     </div>
