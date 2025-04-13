@@ -23,10 +23,10 @@
       "Protocols": [
         {
           "ProtocolName": "Short Maximal Hangs",
-          "Description": "Brief, near-maximal effort hangs (typically 4-10 seconds) using added weight or very small edges to build maximum finger strength and tendon adaptations. Focuses on neuromuscular recruitment and requires long rests (3-5+ min). Done 1-2 times/week.",
+          "Description": "Brief, near-maximal effort hangs (typically 4–10 seconds) using added weight or very small edges to build maximum finger strength and tendon adaptations. Focuses on neuromuscular recruitment and requires long rests (3–5+ min). Recommended 1–2 sessions per week.",
           "IntensityLevels": {
             "Low": {
-              "Description": "Introduction to max hangs or lower intensity phase. Focus on form with challenging but manageable weight/edge.",
+              "Description": "Introduction to max hangs or lower intensity phase. Focus on form with a challenging but manageable load.",
               "Durations": {
                 "5": {
                   "EstimatedWorkoutTime": "Approx 5 min hanging work block (excluding warm-up/long rests)",
@@ -82,11 +82,36 @@
                       "IntensityModifier": "Bodyweight"
                     }
                   ]
+                },
+                "20": {
+                  "EstimatedWorkoutTime": "Approx 20 min hanging work block (excluding warm-up/long rests)",
+                  "Exercises": [
+                    {
+                      "GripType": "Half-Crimp",
+                      "EdgeType": "Medium Edge (20mm)",
+                      "HangDuration_s": 8,
+                      "RestBetweenHangs_s": 180,
+                      "Reps": 3,
+                      "Sets": 2,
+                      "RestBetweenSets_min": 5,
+                      "IntensityModifier": "Bodyweight or moderate added weight"
+                    },
+                    {
+                      "GripType": "Open Hand (Drag)",
+                      "EdgeType": "Medium Edge (20mm)",
+                      "HangDuration_s": 8,
+                      "RestBetweenHangs_s": 180,
+                      "Reps": 2,
+                      "Sets": 1,
+                      "RestBetweenSets_min": 0,
+                      "IntensityModifier": "Bodyweight"
+                    }
+                  ]
                 }
               }
             },
             "Medium": {
-              "Description": "Standard max hang intensity, close to 7-10 second max.",
+              "Description": "Standard max hang intensity close to the 7–10 second maximum. Focus is on near-maximal loads with clear progression.",
               "Durations": {
                 "5": {
                   "EstimatedWorkoutTime": "Approx 5 min hanging work block (excluding warm-up/long rests)",
@@ -142,11 +167,36 @@
                       "IntensityModifier": "Challenging weight"
                     }
                   ]
+                },
+                "20": {
+                  "EstimatedWorkoutTime": "Approx 20 min hanging work block (excluding warm-up/long rests)",
+                  "Exercises": [
+                    {
+                      "GripType": "Half-Crimp",
+                      "EdgeType": "Medium Edge (20mm)",
+                      "HangDuration_s": 10,
+                      "RestBetweenHangs_s": 180,
+                      "Reps": 4,
+                      "Sets": 2,
+                      "RestBetweenSets_min": 5,
+                      "IntensityModifier": "Weight allowing a near-max 13s hang"
+                    },
+                    {
+                      "GripType": "Three-Finger Drag",
+                      "EdgeType": "Medium Edge (20mm)",
+                      "HangDuration_s": 7,
+                      "RestBetweenHangs_s": 180,
+                      "Reps": 2,
+                      "Sets": 1,
+                      "RestBetweenSets_min": 0,
+                      "IntensityModifier": "Challenging weight"
+                    }
+                  ]
                 }
               }
             },
             "High": {
-              "Description": "Pushing limits with max weight or minimum edge size. For advanced users.",
+              "Description": "Pushing limits with maximal added weight or minimum edge size. Recommended only for advanced users.",
               "Durations": {
                 "5": {
                   "EstimatedWorkoutTime": "Approx 5 min hanging work block (excluding warm-up/long rests)",
@@ -159,7 +209,7 @@
                       "Reps": 3,
                       "Sets": 1,
                       "RestBetweenSets_min": 0,
-                      "IntensityModifier": "Bodyweight or added weight"
+                      "IntensityModifier": "Bodyweight or added weight challenge"
                     }
                   ]
                 },
@@ -174,7 +224,7 @@
                       "Reps": 4,
                       "Sets": 1,
                       "RestBetweenSets_min": 0,
-                      "IntensityModifier": "Near max added weight for edge"
+                      "IntensityModifier": "Near-maximal added weight for the edge"
                     }
                   ]
                 },
@@ -189,9 +239,9 @@
                       "Reps": 5,
                       "Sets": 1,
                       "RestBetweenSets_min": 5,
-                      "IntensityModifier": "Maximal Weight (Horst 7-53)"
+                      "IntensityModifier": "Maximal weight (Horst 7-53 protocol)"
                     },
-                     {
+                    {
                       "GripType": "Two-Finger Pocket (Middle)",
                       "EdgeType": "Pocket Hold (2F)",
                       "HangDuration_s": 5,
@@ -202,6 +252,31 @@
                       "IntensityModifier": "Bodyweight or light assist/weight"
                     }
                   ]
+                },
+                "20": {
+                  "EstimatedWorkoutTime": "Approx 20 min hanging work block (excluding warm-up/long rests)",
+                  "Exercises": [
+                    {
+                      "GripType": "Half-Crimp",
+                      "EdgeType": "Small Edge (10-14mm)",
+                      "HangDuration_s": 7,
+                      "RestBetweenHangs_s": 180,
+                      "Reps": 4,
+                      "Sets": 2,
+                      "RestBetweenSets_min": 5,
+                      "IntensityModifier": "Maximal weight challenge"
+                    },
+                    {
+                      "GripType": "Two-Finger Pocket (Middle)",
+                      "EdgeType": "Pocket Hold (2F)",
+                      "HangDuration_s": 5,
+                      "RestBetweenHangs_s": 180,
+                      "Reps": 2,
+                      "Sets": 1,
+                      "RestBetweenSets_min": 0,
+                      "IntensityModifier": "Bodyweight or minimal assist"
+                    }
+                  ]
                 }
               }
             }
@@ -210,7 +285,7 @@
         {
           "ProtocolName": "Longer Hangs (Strength-Endurance)",
           "Description": "Hangs lasting 10-20+ seconds, often bodyweight on challenging edges or with moderate added weight. Develops strength-endurance and fatigue resistance. Requires 1.5-3 min rest between hangs.",
-           "IntensityLevels": {
+          "IntensityLevels": {
             "Low": {
               "Description": "Focus on longer duration with easier holds or assistance.",
               "Durations": {
@@ -230,7 +305,7 @@
                   ]
                 },
                 "10": {
-                   "EstimatedWorkoutTime": "Approx 10 min hanging work block",
+                  "EstimatedWorkoutTime": "Approx 10 min hanging work block",
                   "Exercises": [
                     {
                       "GripType": "Half-Crimp",
@@ -268,12 +343,37 @@
                       "IntensityModifier": "Bodyweight or light assist"
                     }
                   ]
+                },
+                "20": {
+                  "EstimatedWorkoutTime": "Approx 20 min hanging work block",
+                  "Exercises": [
+                    {
+                      "GripType": "Half-Crimp",
+                      "EdgeType": "Medium Edge (20mm)",
+                      "HangDuration_s": 15,
+                      "RestBetweenHangs_s": 120,
+                      "Reps": 3,
+                      "Sets": 2,
+                      "RestBetweenSets_min": 5,
+                      "IntensityModifier": "Bodyweight or light assist"
+                    },
+                    {
+                      "GripType": "Open Hand (Drag)",
+                      "EdgeType": "Medium Edge (20mm)",
+                      "HangDuration_s": 15,
+                      "RestBetweenHangs_s": 120,
+                      "Reps": 3,
+                      "Sets": 1,
+                      "RestBetweenSets_min": 0,
+                      "IntensityModifier": "Bodyweight or light assist"
+                    }
+                  ]
                 }
               }
             },
             "Medium": {
-               "Description": "Challenging bodyweight hangs on smaller edges or moderate added weight on medium edges.",
-               "Durations": {
+              "Description": "Challenging bodyweight hangs on smaller edges or moderate added weight on medium edges.",
+              "Durations": {
                 "5": {
                   "EstimatedWorkoutTime": "Approx 5 min hanging work block",
                   "Exercises": [
@@ -291,7 +391,7 @@
                 },
                 "10": {
                   "EstimatedWorkoutTime": "Approx 10 min hanging work block",
-                   "Exercises": [
+                  "Exercises": [
                     {
                       "GripType": "Half-Crimp",
                       "EdgeType": "Small Edge (10-14mm)",
@@ -307,13 +407,38 @@
                 "15": {
                   "EstimatedWorkoutTime": "Approx 15 min hanging work block",
                   "Exercises": [
-                     {
+                    {
                       "GripType": "Half-Crimp",
                       "EdgeType": "Medium Edge (20mm)",
                       "HangDuration_s": 12,
                       "RestBetweenHangs_s": 150,
                       "Reps": 4,
                       "Sets": 1,
+                      "RestBetweenSets_min": 5,
+                      "IntensityModifier": "Moderate added weight"
+                    },
+                    {
+                      "GripType": "Open Hand (Drag)",
+                      "EdgeType": "Small Edge (10-14mm)",
+                      "HangDuration_s": 10,
+                      "RestBetweenHangs_s": 150,
+                      "Reps": 3,
+                      "Sets": 1,
+                      "RestBetweenSets_min": 0,
+                      "IntensityModifier": "Bodyweight (near limit)"
+                    }
+                  ]
+                },
+                "20": {
+                  "EstimatedWorkoutTime": "Approx 20 min hanging work block",
+                  "Exercises": [
+                    {
+                      "GripType": "Half-Crimp",
+                      "EdgeType": "Medium Edge (20mm)",
+                      "HangDuration_s": 12,
+                      "RestBetweenHangs_s": 120,
+                      "Reps": 4,
+                      "Sets": 2,
                       "RestBetweenSets_min": 5,
                       "IntensityModifier": "Moderate added weight"
                     },
@@ -335,8 +460,8 @@
               "Description": "Pushing duration limits on small edges or with significant weight. Eva López 'Minimum Edge' style fits here.",
               "Durations": {
                 "5": {
-                   "EstimatedWorkoutTime": "Approx 5 min hanging work block",
-                   "Exercises": [
+                  "EstimatedWorkoutTime": "Approx 5 min hanging work block",
+                  "Exercises": [
                     {
                       "GripType": "Half-Crimp",
                       "EdgeType": "Minimum Edge (Specific to protocol)",
@@ -366,8 +491,8 @@
                 },
                 "15": {
                   "EstimatedWorkoutTime": "Approx 15 min hanging work block",
-                   "Exercises": [
-                     {
+                  "Exercises": [
+                    {
                       "GripType": "Half-Crimp",
                       "EdgeType": "Minimum Edge (Specific to protocol)",
                       "HangDuration_s": 12,
@@ -377,7 +502,32 @@
                       "RestBetweenSets_min": 5,
                       "IntensityModifier": "Bodyweight (edge you can hang ~15s)"
                     },
-                     {
+                    {
+                      "GripType": "Open Hand (Drag)",
+                      "EdgeType": "Minimum Edge (Specific to protocol)",
+                      "HangDuration_s": 12,
+                      "RestBetweenHangs_s": 180,
+                      "Reps": 3,
+                      "Sets": 1,
+                      "RestBetweenSets_min": 0,
+                      "IntensityModifier": "Bodyweight (edge you can hang ~15s)"
+                    }
+                  ]
+                },
+                "20": {
+                  "EstimatedWorkoutTime": "Approx 20 min hanging work block",
+                  "Exercises": [
+                    {
+                      "GripType": "Half-Crimp",
+                      "EdgeType": "Minimum Edge (Specific to protocol)",
+                      "HangDuration_s": 12,
+                      "RestBetweenHangs_s": 180,
+                      "Reps": 4,
+                      "Sets": 2,
+                      "RestBetweenSets_min": 5,
+                      "IntensityModifier": "Bodyweight (edge you can hang ~15s)"
+                    },
+                    {
                       "GripType": "Open Hand (Drag)",
                       "EdgeType": "Minimum Edge (Specific to protocol)",
                       "HangDuration_s": 12,
@@ -431,9 +581,9 @@
                   ]
                 },
                 "15": {
-                   "EstimatedWorkoutTime": "Approx 15 min hanging work block",
-                   "Exercises": [
-                     {
+                  "EstimatedWorkoutTime": "Approx 15 min hanging work block",
+                  "Exercises": [
+                    {
                       "GripType": "Half-Crimp",
                       "EdgeType": "Medium Edge (20mm)",
                       "HangDuration_s": 7,
@@ -453,17 +603,17 @@
                       "RestBetweenSets_min": 180,
                       "IntensityModifier": "Pulley assist (-10kg)"
                     }
-                   ]
+                  ]
                 }
               }
             },
             "Medium": {
               "Description": "Standard intensity, challenging bodyweight on medium holds or light added weight.",
-               "Durations": {
+              "Durations": {
                 "5": {
                   "EstimatedWorkoutTime": "Approx 5 min hanging work block",
-                   "Exercises": [
-                     {
+                  "Exercises": [
+                    {
                       "GripType": "Half-Crimp",
                       "EdgeType": "Medium Edge (20mm)",
                       "HangDuration_s": 7,
@@ -473,11 +623,11 @@
                       "RestBetweenSets_min": 180,
                       "IntensityModifier": "Bodyweight (challenging)"
                     }
-                   ]
+                  ]
                 },
                 "10": {
                   "EstimatedWorkoutTime": "Approx 10 min hanging work block",
-                   "Exercises": [
+                  "Exercises": [
                     {
                       "GripType": "Half-Crimp",
                       "EdgeType": "Medium Edge (20mm)",
@@ -503,7 +653,7 @@
                 "15": {
                   "EstimatedWorkoutTime": "Approx 15 min hanging work block",
                   "Exercises": [
-                     {
+                    {
                       "GripType": "Half-Crimp",
                       "EdgeType": "Medium Edge (20mm)",
                       "HangDuration_s": 7,
@@ -523,7 +673,7 @@
                       "RestBetweenSets_min": 180,
                       "IntensityModifier": "Bodyweight"
                     },
-                     {
+                    {
                       "GripType": "Sloper",
                       "EdgeType": "Sloper Hold",
                       "HangDuration_s": 7,
@@ -541,7 +691,7 @@
               "Description": "Increased difficulty via smaller holds or added weight, pushing endurance limits.",
               "Durations": {
                 "5": {
-                   "EstimatedWorkoutTime": "Approx 5 min hanging work block",
+                  "EstimatedWorkoutTime": "Approx 5 min hanging work block",
                   "Exercises": [
                     {
                       "GripType": "Half-Crimp",
@@ -557,7 +707,7 @@
                 },
                 "10": {
                   "EstimatedWorkoutTime": "Approx 10 min hanging work block",
-                   "Exercises": [
+                  "Exercises": [
                     {
                       "GripType": "Half-Crimp",
                       "EdgeType": "Medium Edge (20mm)",
@@ -568,7 +718,7 @@
                       "RestBetweenSets_min": 180,
                       "IntensityModifier": "Moderate added weight (+10kg)"
                     },
-                     {
+                    {
                       "GripType": "Two-Finger Pocket (Middle)",
                       "EdgeType": "Pocket Hold (2F)",
                       "HangDuration_s": 7,
@@ -578,12 +728,12 @@
                       "RestBetweenSets_min": 180,
                       "IntensityModifier": "Bodyweight or slight assist"
                     }
-                   ]
+                  ]
                 },
                 "15": {
                   "EstimatedWorkoutTime": "Approx 15 min hanging work block",
                   "Exercises": [
-                     {
+                    {
                       "GripType": "Half-Crimp",
                       "EdgeType": "Small Edge (10-14mm)",
                       "HangDuration_s": 7,
@@ -603,7 +753,7 @@
                       "RestBetweenSets_min": 180,
                       "IntensityModifier": "Bodyweight"
                     },
-                     {
+                    {
                       "GripType": "Three-Finger Drag",
                       "EdgeType": "Pocket Hold (3F)",
                       "HangDuration_s": 7,
