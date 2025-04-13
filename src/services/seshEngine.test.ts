@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import { generate } from '../services/seshEngine';
+import { Filter, generate } from '../services/seshEngine';
 
 describe('seshEngine.generate', () => {
   it('should return the correct exercises for a valid filter', () => {
-    const filter = {
+    const filter: Filter = {
       protocolName: 'Short Maximal Hangs',
       intensityLevel: 'Low',
       duration: '5min',
@@ -26,7 +26,8 @@ describe('seshEngine.generate', () => {
   });
 
   it('should throw an error if the protocol is not found', () => {
-    const filter = {
+    const filter: Filter = {
+      // @ts-ignore 
       protocolName: 'Nonexistent Protocol',
       intensityLevel: 'Low',
       duration: '5min',
@@ -36,8 +37,9 @@ describe('seshEngine.generate', () => {
   });
 
   it('should throw an error if the intensity level is not found', () => {
-    const filter = {
+    const filter: Filter = {
       protocolName: 'Short Maximal Hangs',
+      // @ts-ignore 
       intensityLevel: 'Nonexistent Intensity',
       duration: '5min',
     };
@@ -48,9 +50,10 @@ describe('seshEngine.generate', () => {
   });
 
   it('should throw an error if the duration is not found', () => {
-    const filter = {
+    const filter: Filter = {
       protocolName: 'Short Maximal Hangs',
       intensityLevel: 'Low',
+      // @ts-ignore 
       duration: 'Nonexistent Duration',
     };
 

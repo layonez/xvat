@@ -39,16 +39,18 @@ interface XvatData {
   FingerboardTrainingData: FingerboardTrainingData;
 }
 
+export interface Filter {
+    protocolName: "Short Maximal Hangs" | "Longer Hangs (Strength-Endurance)" | "Classic 7:3 Repeaters" | "6:10 Heavy Repeaters" | "10:5 Repeaters" | "Frequent Low-Intensity Hangs (e.g., Abrahangs)" | "Active Recovery Hangs";
+    intensityLevel: "Low" | "Medium" | "High";
+    duration: "5min" | "10min" | "15min";
+}
+
 // Load xvat.json data on module initialization
 const xvatFilePath = path.resolve(__dirname, '../xvat.json');
 const xvatData: XvatData = JSON.parse(fs.readFileSync(xvatFilePath, 'utf-8'));
 
 // Exported method to generate a list of exercises based on filters
-export function generate(filter: {
-  protocolName: string;
-  intensityLevel: string;
-  duration: string;
-}): Exercise[] {
+export function generate(filter: Filter): Exercise[] {
   const { protocolName, intensityLevel, duration } = filter;
 
   // Find the protocol

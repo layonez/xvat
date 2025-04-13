@@ -1,5 +1,46 @@
+@import "tailwindcss";
+/* 
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
-/* Add any custom styles below */
+:root {
+  --background: 20 10% 8%;
+  --foreground: 0 0% 100%;
+  --card: 24 10% 10%;
+  --card-foreground: 0 0% 100%;
+  --popover: 0 0% 9%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 210 90% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 12 6% 15%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 12 6% 15%;
+  --muted-foreground: 0 0% 70%;
+  --accent: 12 6% 15%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 12 6% 15%;
+  --input: 12 6% 15%;
+  --ring: 215 20.2% 65.1%;
+  --radius: 0.75rem;
+}
+
+body {
+  font-feature-settings: "rlig" 1, "calt" 1;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
