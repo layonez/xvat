@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import DurationWheel from "./DurationWheel"; // Import the new component
-import { Filter } from "../services/seshEngine";
+import { Exercise, Filter } from "../services/seshEngine";
+import GuidedSession from "./GuidedSession";
+import { generate } from "../services/seshEngine";
 
   // Selector component (Keep as is)
   const Selector = ({ label, value, options, onChange }: { label: string; value: string; options: string[]; onChange: (value: string) => void }) => {
@@ -51,72 +53,31 @@ import { Filter } from "../services/seshEngine";
   };
   
 export default function Page() {
-  const [duration, setDuration] = useState(10); // Default to 10 as per original steps 5, 10, 15
+  const [filters, setFilters] = useState<Filter>({
+    protocolName: "Short Maximal Hangs",
+    intensityLevel: "Low",
+    duration: 10,
+  });
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // --- Swipe Gesture Logic (Keep as is) ---
-  useEffect(() => {
-        const handleTouchStart = (e: TouchEvent) => {
-            // Only track swipes if not interacting with the wheel or other interactive elements
-            if ((e.target as HTMLElement)?.closest('.duration-wheel-container')) {
-                 startY = null; // Don't swipe if touching the wheel area
-                 return;
-            }
-            startY = e.touches[0].clientY;
-        };
+  const [session, setSession] = useState<Exercise[] | null>(null);
 
-        const handleTouchMove = (e: TouchEvent) => {
-            if (!startY) {return;}
+  const startSession = () => {
+    try {
+      const generatedSession = generate(filters);
+      setSession(generatedSession);
+    } catch (error) {
+      console.error("Error generating session:", error);
+    }
+  };
 
-            const currentY = e.touches[0].clientY;
-            const diff = startY - currentY;
-
-            // If swiping up and menu is closed, open it
-            if (diff > 50 && !menuOpen) {
-                setMenuOpen(true);
-                startY = null; // Reset after triggering
-            }
-
-            // If swiping down and menu is open, close it
-            // Allow swipe down only if the menu content is scrolled to the top OR if target is the drag handle
-            const menuElement = menuRef.current;
-            const targetIsDragHandle = (e.target as HTMLElement)?.closest('.drag-handle');
-            const canSwipeDown = menuElement ? menuElement.scrollTop <= 0 : true; // Default to true if menuRef not available yet
-
-            if (diff < -50 && menuOpen && (canSwipeDown || targetIsDragHandle)) {
-                 // Check if touch started near the top drag handle area for more leniency
-                const initialTouchOnHandleArea = startY !== null && startY < 100; // Allow swipe down if starting near the top handle
-
-                if (canSwipeDown || initialTouchOnHandleArea || targetIsDragHandle) {
-                     setMenuOpen(false);
-                     startY = null; // Reset after triggering
-                }
-
-            }
-        };
-
-
-        let startY: number | null = null;
-        document.addEventListener("touchstart", handleTouchStart, { passive: true }); // Passive true is generally fine for start
-        document.addEventListener("touchmove", handleTouchMove, { passive: false }); // Use passive false if preventDefault might be needed
-
-        return () => {
-            document.removeEventListener("touchstart", handleTouchStart);
-            document.removeEventListener("touchmove", handleTouchMove);
-        };
-  }, [menuOpen]); // Re-run when menuOpen changes to potentially adjust logic if needed
-
-
-  const [protocolName, setProtocolName] = useState<Filter["protocolName"]>("Short Maximal Hangs");
-  const [intensityLevel, setIntensityLevel] = useState<Filter["intensityLevel"]>("Low");
-
-  // Toggle menu open/closed
+  if (session) {
+    return <GuidedSession exercises={session} />;
+  }
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-
-
 
   return (
     <div className="relative h-screen w-full bg-[#1a1512] text-white overflow-hidden">
@@ -137,8 +98,8 @@ export default function Page() {
             className="flex justify-center items-center mt-16 duration-wheel-container" // Added container class for swipe detection
           >
             <DurationWheel
-              value={duration}
-              onChange={setDuration}
+              value={filters.duration}
+              onChange={(value) => setFilters({ ...filters, duration: value as Filter["duration"] })}
               min={5}
               max={15} // Set max to 15 to match original steps
               step={5}
@@ -185,7 +146,7 @@ export default function Page() {
                   <Selector label="Video Model" value={videoModel} /> */}
                   <Selector
                     label="Protocol Name"
-                    value={protocolName}
+                    value={filters.protocolName}
                     options={[
                       "Short Maximal Hangs",
                       "Longer Hangs (Strength-Endurance)",
@@ -195,13 +156,13 @@ export default function Page() {
                       "Frequent Low-Intensity Hangs (e.g., Abrahangs)",
                       "Active Recovery Hangs",
                     ]}
-                    onChange={(value) => setProtocolName(value as Filter["protocolName"])}
+                    onChange={(value) => setFilters({ ...filters, protocolName: value as Filter["protocolName"] })}
                   />
                   <Selector
                     label="Intensity Level"
-                    value={intensityLevel}
+                    value={filters.intensityLevel}
                     options={["Low", "Medium", "High"]}
-                    onChange={(value) => setIntensityLevel(value as Filter["intensityLevel"])}
+                    onChange={(value) => setFilters({ ...filters, intensityLevel: value as Filter["intensityLevel"] })}
                   />
                   {/* <Selector label="View Poses" value={viewPoses} /> */}
                 </div>
@@ -246,7 +207,7 @@ export default function Page() {
               <div className="grid grid-cols-2 gap-4 mb-4">
                 <Selector
                   label="Protocol Name"
-                  value={protocolName}
+                  value={filters.protocolName}
                   options={[
                     "Short Maximal Hangs",
                     "Longer Hangs (Strength-Endurance)",
@@ -256,18 +217,21 @@ export default function Page() {
                     "Frequent Low-Intensity Hangs (e.g., Abrahangs)",
                     "Active Recovery Hangs",
                   ]}
-                  onChange={(value) => setProtocolName(value as Filter["protocolName"])}
+                  onChange={(value) => setFilters({ ...filters, protocolName: value as Filter["protocolName"] })}
                 />
                 <Selector
                   label="Intensity Level"
-                  value={intensityLevel}
+                  value={filters.intensityLevel}
                   options={["Low", "Medium", "High"]}
-                  onChange={(value) => setIntensityLevel(value as Filter["intensityLevel"])}
+                  onChange={(value) => setFilters({ ...filters, intensityLevel: value as Filter["intensityLevel"] })}
                 />
               </div>
 
               {/* Start button */}
-              <button className="w-full bg-[#2196f3] text-white py-4 rounded-full text-xl font-medium">
+              <button
+                className="w-full bg-[#2196f3] text-white py-4 rounded-full text-xl font-medium"
+                onClick={startSession}
+              >
                 START
               </button>
             </div>

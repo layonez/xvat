@@ -28,7 +28,7 @@
             "Low": {
               "Description": "Introduction to max hangs or lower intensity phase. Focus on form with challenging but manageable weight/edge.",
               "Durations": {
-                "5min": {
+                "5": {
                   "EstimatedWorkoutTime": "Approx 5 min hanging work block (excluding warm-up/long rests)",
                   "Exercises": [
                     {
@@ -43,7 +43,7 @@
                     }
                   ]
                 },
-                "10min": {
+                "10": {
                   "EstimatedWorkoutTime": "Approx 10 min hanging work block (excluding warm-up/long rests)",
                   "Exercises": [
                     {
@@ -58,7 +58,7 @@
                     }
                   ]
                 },
-                "15min": {
+                "15": {
                   "EstimatedWorkoutTime": "Approx 15 min hanging work block (excluding warm-up/long rests)",
                   "Exercises": [
                     {
@@ -88,7 +88,7 @@
             "Medium": {
               "Description": "Standard max hang intensity, close to 7-10 second max.",
               "Durations": {
-                "5min": {
+                "5": {
                   "EstimatedWorkoutTime": "Approx 5 min hanging work block (excluding warm-up/long rests)",
                   "Exercises": [
                     {
@@ -103,7 +103,7 @@
                     }
                   ]
                 },
-                "10min": {
+                "10": {
                   "EstimatedWorkoutTime": "Approx 10 min hanging work block (excluding warm-up/long rests)",
                   "Exercises": [
                     {
@@ -118,7 +118,7 @@
                     }
                   ]
                 },
-                "15min": {
+                "15": {
                   "EstimatedWorkoutTime": "Approx 15 min hanging work block (excluding warm-up/long rests)",
                   "Exercises": [
                     {
@@ -148,7 +148,7 @@
             "High": {
               "Description": "Pushing limits with max weight or minimum edge size. For advanced users.",
               "Durations": {
-                "5min": {
+                "5": {
                   "EstimatedWorkoutTime": "Approx 5 min hanging work block (excluding warm-up/long rests)",
                   "Exercises": [
                     {
@@ -163,7 +163,7 @@
                     }
                   ]
                 },
-                "10min": {
+                "10": {
                   "EstimatedWorkoutTime": "Approx 10 min hanging work block (excluding warm-up/long rests)",
                   "Exercises": [
                     {
@@ -178,7 +178,7 @@
                     }
                   ]
                 },
-                "15min": {
+                "15": {
                   "EstimatedWorkoutTime": "Approx 15 min hanging work block (excluding warm-up/long rests)",
                   "Exercises": [
                     {
@@ -214,7 +214,7 @@
             "Low": {
               "Description": "Focus on longer duration with easier holds or assistance.",
               "Durations": {
-                "5min": {
+                "5": {
                   "EstimatedWorkoutTime": "Approx 5 min hanging work block",
                   "Exercises": [
                     {
@@ -229,7 +229,7 @@
                     }
                   ]
                 },
-                "10min": {
+                "10": {
                    "EstimatedWorkoutTime": "Approx 10 min hanging work block",
                   "Exercises": [
                     {
@@ -244,7 +244,7 @@
                     }
                   ]
                 },
-                "15min": {
+                "15": {
                   "EstimatedWorkoutTime": "Approx 15 min hanging work block",
                   "Exercises": [
                     {
@@ -274,7 +274,7 @@
             "Medium": {
                "Description": "Challenging bodyweight hangs on smaller edges or moderate added weight on medium edges.",
                "Durations": {
-                "5min": {
+                "5": {
                   "EstimatedWorkoutTime": "Approx 5 min hanging work block",
                   "Exercises": [
                     {
@@ -289,7 +289,7 @@
                     }
                   ]
                 },
-                "10min": {
+                "10": {
                   "EstimatedWorkoutTime": "Approx 10 min hanging work block",
                    "Exercises": [
                     {
@@ -304,7 +304,7 @@
                     }
                   ]
                 },
-                "15min": {
+                "15": {
                   "EstimatedWorkoutTime": "Approx 15 min hanging work block",
                   "Exercises": [
                      {
@@ -334,7 +334,7 @@
             "High": {
               "Description": "Pushing duration limits on small edges or with significant weight. Eva López 'Minimum Edge' style fits here.",
               "Durations": {
-                "5min": {
+                "5": {
                    "EstimatedWorkoutTime": "Approx 5 min hanging work block",
                    "Exercises": [
                     {
@@ -349,7 +349,7 @@
                     }
                   ]
                 },
-                "10min": {
+                "10": {
                   "EstimatedWorkoutTime": "Approx 10 min hanging work block",
                   "Exercises": [
                     {
@@ -364,7 +364,7 @@
                     }
                   ]
                 },
-                "15min": {
+                "15": {
                   "EstimatedWorkoutTime": "Approx 15 min hanging work block",
                    "Exercises": [
                      {
@@ -400,7 +400,7 @@
             "Low": {
               "Description": "Focus on completing sets with good form, using larger holds or assistance.",
               "Durations": {
-                "5min": {
+                "5": {
                   "EstimatedWorkoutTime": "Approx 5 min hanging work block",
                   "Exercises": [
                     {
@@ -415,7 +415,7 @@
                     }
                   ]
                 },
-                "10min": {
+                "10": {
                   "EstimatedWorkoutTime": "Approx 10 min hanging work block",
                   "Exercises": [
                     {
@@ -430,7 +430,7 @@
                     }
                   ]
                 },
-                "15min": {
+                "15": {
                    "EstimatedWorkoutTime": "Approx 15 min hanging work block",
                    "Exercises": [
                      {
@@ -460,7 +460,7 @@
             "Medium": {
               "Description": "Standard intensity, challenging bodyweight on medium holds or light added weight.",
                "Durations": {
-                "5min": {
+                "5": {
                   "EstimatedWorkoutTime": "Approx 5 min hanging work block",
                    "Exercises": [
                      {
@@ -475,7 +475,7 @@
                     }
                    ]
                 },
-                "10min": {
+                "10": {
                   "EstimatedWorkoutTime": "Approx 10 min hanging work block",
                    "Exercises": [
                     {
@@ -500,7 +500,7 @@
                     }
                   ]
                 },
-                "15min": {
+                "15": {
                   "EstimatedWorkoutTime": "Approx 15 min hanging work block",
                   "Exercises": [
                      {
@@ -540,7 +540,7 @@
             "High": {
               "Description": "Increased difficulty via smaller holds or added weight, pushing endurance limits.",
               "Durations": {
-                "5min": {
+                "5": {
                    "EstimatedWorkoutTime": "Approx 5 min hanging work block",
                   "Exercises": [
                     {
@@ -555,7 +555,7 @@
                     }
                   ]
                 },
-                "10min": {
+                "10": {
                   "EstimatedWorkoutTime": "Approx 10 min hanging work block",
                    "Exercises": [
                     {
@@ -580,7 +580,7 @@
                     }
                    ]
                 },
-                "15min": {
+                "15": {
                   "EstimatedWorkoutTime": "Approx 15 min hanging work block",
                   "Exercises": [
                      {
@@ -626,7 +626,7 @@
              "Low": {
               "Description": "Introduction to the format, moderate intensity.",
                "Durations": {
-                "5min": {
+                "5": {
                   "EstimatedWorkoutTime": "Approx 5 min hanging work block",
                   "Exercises": [
                     {
@@ -641,7 +641,7 @@
                     }
                   ]
                 },
-                "10min": {
+                "10": {
                   "EstimatedWorkoutTime": "Approx 10 min hanging work block",
                    "Exercises": [
                     {
@@ -656,7 +656,7 @@
                     }
                    ]
                 },
-                "15min": {
+                "15": {
                   "EstimatedWorkoutTime": "Approx 15 min hanging work block",
                    "Exercises": [
                     {
@@ -686,7 +686,7 @@
             "Medium": {
                "Description": "Using significant added weight or smaller holds to make hangs challenging.",
                "Durations": {
-                "5min": {
+                "5": {
                    "EstimatedWorkoutTime": "Approx 5 min hanging work block",
                    "Exercises": [
                     {
@@ -701,7 +701,7 @@
                     }
                   ]
                 },
-                "10min": {
+                "10": {
                    "EstimatedWorkoutTime": "Approx 10 min hanging work block",
                    "Exercises": [
                      {
@@ -716,7 +716,7 @@
                     }
                    ]
                 },
-                "15min": {
+                "15": {
                   "EstimatedWorkoutTime": "Approx 15 min hanging work block",
                   "Exercises": [
                     {
@@ -746,7 +746,7 @@
             "High": {
                "Description": "Near maximal hangs within the repeater format, using very small holds or heavy weight.",
                "Durations": {
-                "5min": {
+                "5": {
                   "EstimatedWorkoutTime": "Approx 5 min hanging work block",
                   "Exercises": [
                     {
@@ -761,7 +761,7 @@
                     }
                    ]
                 },
-                "10min": {
+                "10": {
                    "EstimatedWorkoutTime": "Approx 10 min hanging work block",
                    "Exercises": [
                     {
@@ -776,7 +776,7 @@
                     }
                   ]
                 },
-                "15min": {
+                "15": {
                    "EstimatedWorkoutTime": "Approx 15 min hanging work block",
                   "Exercises": [
                     {
@@ -812,7 +812,7 @@
              "Low": {
               "Description": "Focus on completing sets with good form, using larger holds or assistance.",
                "Durations": {
-                "5min": {
+                "5": {
                    "EstimatedWorkoutTime": "Approx 5 min hanging work block",
                    "Exercises": [
                     {
@@ -827,7 +827,7 @@
                     }
                    ]
                 },
-                "10min": {
+                "10": {
                   "EstimatedWorkoutTime": "Approx 10 min hanging work block",
                    "Exercises": [
                     {
@@ -842,7 +842,7 @@
                     }
                    ]
                 },
-                "15min": {
+                "15": {
                    "EstimatedWorkoutTime": "Approx 15 min hanging work block",
                    "Exercises": [
                     {
@@ -872,7 +872,7 @@
             "Medium": {
               "Description": "Standard intensity, challenging bodyweight on medium holds or light added weight. Aim for multiple sets.",
                "Durations": {
-                "5min": {
+                "5": {
                    "EstimatedWorkoutTime": "Approx 5 min hanging work block",
                   "Exercises": [
                      {
@@ -887,7 +887,7 @@
                     }
                    ]
                 },
-                "10min": {
+                "10": {
                   "EstimatedWorkoutTime": "Approx 10 min hanging work block",
                    "Exercises": [
                     {
@@ -902,7 +902,7 @@
                     }
                    ]
                 },
-                "15min": {
+                "15": {
                   "EstimatedWorkoutTime": "Approx 15 min hanging work block",
                    "Exercises": [
                      {
@@ -932,7 +932,7 @@
             "High": {
               "Description": "Increased difficulty via smaller holds or added weight, aiming for high volume (approaching 10-20 total sets for longer durations).",
                "Durations": {
-                "5min": {
+                "5": {
                   "EstimatedWorkoutTime": "Approx 5 min hanging work block",
                    "Exercises": [
                      {
@@ -947,7 +947,7 @@
                     }
                    ]
                 },
-                "10min": {
+                "10": {
                   "EstimatedWorkoutTime": "Approx 10 min hanging work block",
                    "Exercises": [
                      {
@@ -962,7 +962,7 @@
                     }
                    ]
                 },
-                "15min": {
+                "15": {
                    "EstimatedWorkoutTime": "Approx 15 min hanging work block",
                   "Exercises": [
                      {
@@ -998,7 +998,7 @@
             "Low": {
               "Description": "The intended use of this protocol - very light, frequent stimulus.",
               "Durations": {
-                "5min": {
+                "5": {
                    "EstimatedWorkoutTime": "Approx 5 min",
                    "Exercises": [
                      {
@@ -1013,7 +1013,7 @@
                     }
                    ]
                 },
-                "10min": {
+                "10": {
                   "EstimatedWorkoutTime": "Approx 10 min",
                    "Exercises": [
                      {
@@ -1038,7 +1038,7 @@
                     }
                   ]
                 },
-                "15min": {
+                "15": {
                    "EstimatedWorkoutTime": "Approx 15 min",
                    "Exercises": [
                      {
@@ -1078,17 +1078,17 @@
             "Medium": {
                "Description": "Not the primary intended use. Could involve slightly smaller holds or less foot support, but still submaximal.",
                "Durations": {
-                "5min": null,
-                "10min": null,
-                "15min": null
+                "5": null,
+                "10": null,
+                "15": null
               }
             },
             "High": {
                "Description": "Not applicable. This protocol is defined by low intensity.",
                "Durations": {
-                "5min": null,
-                "10min": null,
-                "15min": null
+                "5": null,
+                "10": null,
+                "15": null
               }
             }
           }
@@ -1100,7 +1100,7 @@
             "Low": {
               "Description": "The intended use - very light, short duration to aid recovery.",
               "Durations": {
-                "5min": {
+                "5": {
                   "EstimatedWorkoutTime": "Approx 5 min",
                    "Exercises": [
                     {
@@ -1115,7 +1115,7 @@
                     }
                    ]
                 },
-                "10min": {
+                "10": {
                   "EstimatedWorkoutTime": "Approx 10 min",
                    "Exercises": [
                     {
@@ -1140,7 +1140,7 @@
                     }
                    ]
                 },
-                "15min": {
+                "15": {
                   "EstimatedWorkoutTime": "Approx 15 min",
                   "Exercises": [
                     {
@@ -1170,17 +1170,17 @@
             "Medium": {
                "Description": "Not applicable. Intensity should remain low for recovery.",
                 "Durations": {
-                "5min": null,
-                "10min": null,
-                "15min": null
+                "5": null,
+                "10": null,
+                "15": null
               }
             },
             "High": {
               "Description": "Not applicable. Intensity should remain low for recovery.",
                "Durations": {
-                "5min": null,
-                "10min": null,
-                "15min": null
+                "5": null,
+                "10": null,
+                "15": null
               }
             }
           }

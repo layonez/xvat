@@ -6,7 +6,7 @@ describe('seshEngine.generate', () => {
     const filter: Filter = {
       protocolName: 'Short Maximal Hangs',
       intensityLevel: 'Low',
-      duration: '5min',
+      duration: 5,
     };
 
     const exercises = generate(filter);
@@ -30,7 +30,7 @@ describe('seshEngine.generate', () => {
       // @ts-ignore 
       protocolName: 'Nonexistent Protocol',
       intensityLevel: 'Low',
-      duration: '5min',
+      duration: 5,
     };
 
     expect(() => generate(filter)).toThrow('Protocol \'Nonexistent Protocol\' not found.');
@@ -41,7 +41,7 @@ describe('seshEngine.generate', () => {
       protocolName: 'Short Maximal Hangs',
       // @ts-ignore 
       intensityLevel: 'Nonexistent Intensity',
-      duration: '5min',
+      duration: 5,
     };
 
     expect(() => generate(filter)).toThrow(
