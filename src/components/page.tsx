@@ -101,7 +101,7 @@ export default function Page() {
               value={filters.duration}
               onChange={(value) => setFilters({ ...filters, duration: value as Filter["duration"] })}
               min={5}
-              max={15} // Set max to 15 to match original steps
+              max={20} // Set max to 15 to match original steps
               step={5}
               // Optional: Adjust size if needed
               // size={256}

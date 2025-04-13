@@ -46,7 +46,7 @@ function calculateTotalDuration(
 
       // Add time for rests between sets (one less rest than sets)
       if (ex.Sets > 1) {
-        totalSeconds += (ex.Sets - 1) * (ex.RestBetweenSets_min * 60);
+        totalSeconds += (ex.Sets - 1) * (ex.RestBetweenSets_min);
       }
 
       // Add prep time before the *next* exercise starts (if not the last exercise)
@@ -144,7 +144,7 @@ export default function GuidedSession({
               // Else, check if more sets left in the current exercise
               else if (prev.currentSet < exercise.Sets) {
                 nextState.currentPhase = "REST_SET";
-                nextState.phaseTimeLeft = exercise.RestBetweenSets_min * 60;
+                nextState.phaseTimeLeft = exercise.RestBetweenSets_min;
                 nextState.currentSet += 1;
                 nextState.currentRep = 1; // Reset reps for next set
               }

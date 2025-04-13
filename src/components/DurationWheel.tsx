@@ -15,7 +15,7 @@ const DurationWheel: React.FC<DurationWheelProps> = ({
   value,
   onChange,
   min = 5,
-  max = 15, // Changed default max to 15 based on original code
+  max = 20, // Changed default max to 15 based on original code
   step = 5,
   size = 256, // Corresponds to w-64 in Tailwind
   strokeWidth = 4,
