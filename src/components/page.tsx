@@ -73,7 +73,7 @@ export default function Page() {
   };
 
   if (session) {
-    return <GuidedSession exercises={session} />;
+    return <GuidedSession exercises={session} onSessionComplete={() => setSession(null)} />;
   }
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
