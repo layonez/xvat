@@ -1,4 +1,4 @@
-import type React from "react"
+import type { Filter } from "../services/seshEngine"
 
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -48,8 +48,6 @@ export default function Page() {
   }, [menuOpen])
 
   // Menu states
-  const [boost, setBoost] = useState("Chest and Shoulders")
-  const [secondaryBoost, setSecondaryBoost] = useState("Neck Stretches")
   const [type, setType] = useState("Yin")
   const [level, setLevel] = useState("Intermediate 1")
   const [voice, setVoice] = useState("Selama")
@@ -60,6 +58,8 @@ export default function Page() {
   const [holdLengths, setHoldLengths] = useState("Auto")
   const [savasana, setSavasana] = useState("None")
   const [musicStyle, setMusicStyle] = useState("Alt Beats")
+  const [protocolName, setProtocolName] = useState<Filter["protocolName"]>("Short Maximal Hangs")
+  const [intensityLevel, setIntensityLevel] = useState<Filter["intensityLevel"]>("Low")
 
   // Navigation bar height
   const navBarHeight = 60
@@ -108,11 +108,6 @@ export default function Page() {
 
   return (
     <div className="relative h-screen w-full bg-[#1a1512] text-white overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0 opacity-20">
-        <img src="/placeholder.svg?height=800&width=400" alt="Background"  className="object-cover" />
-      </div>
-
       {/* Welcome text */}
       <div className="pt-16 text-center">
         <h1 className="text-2xl font-medium">Welcome back!</h1>
@@ -191,8 +186,8 @@ export default function Page() {
                   <Selector label="Voice" value={voice} />
                   <Selector label="Instruction" value={instruction} />
                   <Selector label="Video Model" value={videoModel} />
-                  <Selector label="Boost" value={boost} />
-                  <Selector label="Secondary Boost" value={secondaryBoost} />
+                  <Selector label="Protocol Name" value={protocolName} />
+                  <Selector label="Intensity Level" value={intensityLevel} />
                   <Selector label="View Poses" value={viewPoses} />
                 </div>
               </div>
@@ -233,8 +228,8 @@ export default function Page() {
             {/* Collapsed menu content */}
             <div className="px-4 pb-4">
               <div className="grid grid-cols-2 gap-4 mb-4">
-                <Selector label="Boost" value={boost} />
-                <Selector label="Secondary Boost" value={secondaryBoost} />
+                <Selector label="Protocol Name" value={protocolName} />
+                <Selector label="Intensity Level" value={intensityLevel} />
               </div>
 
               {/* Start button */}
