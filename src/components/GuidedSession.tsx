@@ -227,6 +227,29 @@ export default function GuidedSession({
      onSessionComplete(); // Trigger completion callback
   }
 
+  // Add a new function to skip the current exercise
+  const skipExercise = () => {
+    setSessionState((prev) => {
+      let nextState = { ...prev };
+
+      // Check if there are more exercises left
+      if (prev.currentExerciseIndex < validExercises.length - 1) {
+        nextState.currentPhase = "PREP";
+        nextState.phaseTimeLeft = initialPrepTime; // Prep for next exercise
+        nextState.currentExerciseIndex += 1;
+        nextState.currentSet = 1; // Reset set/rep for new exercise
+        nextState.currentRep = 1;
+      } else {
+        // If no more exercises, finish the session
+        nextState.currentPhase = "FINISHED";
+        nextState.phaseTimeLeft = 0;
+        nextState.totalTimeLeft = 0;
+      }
+
+      return nextState;
+    });
+  };
+
   // --- UI Rendering ---
 
   const getPhaseInfo = (): { text: string; colorClass: string } => {
@@ -343,6 +366,13 @@ export default function GuidedSession({
             disabled={sessionState.isPaused} // Disable if already paused to avoid confusion
            >
             Finish Early
+           </button>
+           {/* New Skip Button */}
+           <button
+            onClick={skipExercise}
+            className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-full text-lg font-medium transition-colors"
+           >
+            Skip Exercise
            </button>
         </div>
       )}
