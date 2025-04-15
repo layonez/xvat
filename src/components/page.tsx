@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import DurationWheel from "./DurationWheel"; // Import the new component
-import { Exercise, Filter, Warmup } from "../services/seshEngine";
+import { Exercise, Filter } from "../services/seshEngine";
 import GuidedSession from "./GuidedSession";
 import GuidedWarmup from "./GuidedWarmup"; // Import GuidedWarmup component
 import { generate, generateWarmups } from "../services/seshEngine"; // Import generateWarmups method
+import { ExerciseListScreen } from "./Exercises"; // Import ExerciseListScreen
+import { useRef, useState } from "react";
 
   // Selector component (Keep as is)
   const Selector = ({ label, value, options, onChange }: { label: string; value: string; options: string[]; onChange: (value: string) => void }) => {
@@ -63,20 +64,36 @@ export default function Page() {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const [session, setSession] = useState<Exercise[] | null>(null);
-  const [warmups, setWarmups] = useState<Warmup[] | null>(null); // State to hold warmups
+  const [warmups, setWarmups] = useState<Exercise[] | null>(null); // State to hold warmups
   const [warmupComplete, setWarmupComplete] = useState(false); // State to track warmup completion
+  const [showExerciseList, setShowExerciseList] = useState(false); // State to show exercise list
 
   const startSession = () => {
     try {
-        const generatedWarmups = generateWarmups(filters);
-    setWarmups(generatedWarmups);
+      const generatedWarmups = generateWarmups(filters);
+      setWarmups(generatedWarmups);
 
       const generatedSession = generate(filters);
       setSession(generatedSession);
+
+      console.log("Generated session:", generatedSession);
+      console.log("Generated warmups:", generatedWarmups);
+
+      setShowExerciseList(true); // Show exercise list after generating session
     } catch (error) {
       console.error("Error generating session:", error);
     }
   };
+
+  if (showExerciseList && session) {
+    return (
+      <ExerciseListScreen
+        exercises={[...warmups, ...session]}
+        onStart={() => setShowExerciseList(false)} // Proceed to GuidedSession
+        onBack={() => setShowExerciseList(false)} // Go back to main page
+      />
+    );
+  }
 
   if (!warmupComplete && warmups) {
     return (

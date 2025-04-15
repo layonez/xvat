@@ -62,28 +62,14 @@ export function generate(filter: Filter): Exercise[] {
   return durationData[0].Exercises;
 }
 
-export interface Warmup {
-  Description: string;
-  Additional_Info: string;
-  GripType: string;
-  EdgeType: string;
-  Duration_s: number;
-  Rest_s: number;
-  Reps: number;
-  Sets: number;
-  RestBetweenSets_s: number;
-  Intensity_Modifier: string;
-  Target: string[];
-}
-
-export function generateWarmups(filter: Filter): Warmup[] {
+export function generateWarmups(filter: Filter): Exercise[] {
   const { duration } = filter;
 
   // Calculate target warmup duration (min 2 mins, max 10 mins, 20% of duration)
   const targetWarmupDuration = Math.min(Math.max(duration * 0.2, 2), 10) * 60; // Convert to seconds
 
   // Helper function to calculate total duration of a warmup
-  const calculateWarmupDuration = (warmup: Warmup): number => {
+  const calculateWarmupDuration = (warmup: Exercise): number => {
     const oneRepDuration = warmup.Duration_s + warmup.Rest_s;
     const setDuration = oneRepDuration * warmup.Reps + warmup.RestBetweenSets_s;
     return setDuration * warmup.Sets;
@@ -98,15 +84,15 @@ export function generateWarmups(filter: Filter): Warmup[] {
   };
 
   // Separate warmups into required and optional categories
-  const requiredFingerWarmups = warmupsJson.filter((warmup: Warmup) =>
-    warmup.Target.some((t) => ["finger", "finger_joints", "wrist", "grip_strength"].includes(t))
+  const requiredFingerWarmups: Exercise[] = warmupsJson.filter((warmup: Exercise) =>
+    warmup.Target?.some((t) => ["finger", "finger_joints", "wrist", "grip_strength"].includes(t))
   );
 
-  const requiredScapulaWarmups = warmupsJson.filter((warmup: Warmup) =>
-    warmup.Target.some((t) => ["scapula", "upper_back", "neck", "rotator_cuff"].includes(t))
+  const requiredScapulaWarmups: Exercise[] = warmupsJson.filter((warmup: Exercise) =>
+    warmup.Target?.some((t) => ["scapula", "upper_back", "neck", "rotator_cuff"].includes(t))
   );
 
-  const optionalWarmups = warmupsJson.filter((warmup: Warmup) =>
+  const optionalWarmups = warmupsJson.filter((warmup: Exercise) =>
     !requiredFingerWarmups.includes(warmup) && !requiredScapulaWarmups.includes(warmup)
   );
 
@@ -116,7 +102,7 @@ export function generateWarmups(filter: Filter): Warmup[] {
   const shuffledOptionalWarmups = shuffleArray(optionalWarmups);
 
   // Prioritize required warmups
-  const selectedWarmups: Warmup[] = [];
+  const selectedWarmups: Exercise[] = [];
   let accumulatedDuration = 0;
 
   // Ensure at least one warmup from each required category

@@ -2,10 +2,10 @@ import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { motion } from "framer-motion";
 import restAudioSrc from '/src/assets/rest.mp3'; // Adjust path if needed
 import startAudioSrc from '/src/assets/start.mp3'; // Adjust path if needed
-import { Warmup } from "../services/seshEngine";
+import { Exercise } from "../services/seshEngine";
 
 interface GuidedWarmupProps {
-  warmups: Warmup[];
+  warmups: Exercise[];
   onSessionComplete: () => void; // Callback when the session finishes
   initialPrepTime?: number; // Optional: Seconds before the very first step
 }
@@ -29,7 +29,7 @@ interface SessionState {
  * Calculates the total estimated duration of the warmup in seconds.
  */
 function calculateTotalWarmupDuration(
-  warmups: Warmup[],
+  warmups: Exercise[],
   initialPrepTime: number = 5
 ): number {
   let totalSeconds = initialPrepTime > 0 ? initialPrepTime : 0; // Start with initial prep time only if > 0
@@ -81,7 +81,7 @@ function formatTime(totalSeconds: number): string {
  */
 const calculateNextWarmupState = (
     currentState: SessionState,
-    validWarmups: Warmup[],
+    validWarmups: Exercise[],
     initialPrepTime: number
 ): Omit<SessionState, 'totalTimeLeft' | 'isPaused'> => {
     let nextPhase = currentState.currentPhase;
