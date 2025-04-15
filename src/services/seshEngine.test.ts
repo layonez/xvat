@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { Filter, generate } from '../services/seshEngine';
+import { Filter, generate, generateWarmups } from '../services/seshEngine';
 
 describe('seshEngine.generate', () => {
   it('should return the correct exercises for a valid filter', () => {
@@ -17,10 +17,10 @@ describe('seshEngine.generate', () => {
         EdgeType: 'Medium Edge (20mm)',
         HangDuration_s: 7,
         RestBetweenHangs_s: 180,
-        Reps: 2,
+        Reps: 3,
         Sets: 1,
         RestBetweenSets_min: 0,
-        IntensityModifier: 'Bodyweight or small added weight',
+        IntensityModifier: 'Bodyweight or moderate added weight',
       },
     ]);
   });
@@ -62,3 +62,76 @@ describe('seshEngine.generate', () => {
     );
   });
 });
+
+
+describe('seshEngine.generateWarmups', () => {
+    it('should calculate target warmup duration correctly', () => {
+      const filter: Filter = {
+        protocolName: 'Short Maximal Hangs',
+        intensityLevel: 'Low',
+        duration: 20,
+      };
+  
+      const warmups = generateWarmups(filter);
+  
+      const totalDuration = warmups.reduce((acc, warmup) => {
+        const oneRepDuration = warmup.Duration_s + warmup.Rest_s;
+        const setDuration = oneRepDuration * warmup.Reps + warmup.RestBetweenSets_s;
+        return acc + setDuration * warmup.Sets;
+      }, 0);
+  
+      expect(totalDuration).toBeLessThanOrEqual(10 * 60); // Max 10 minutes
+      expect(totalDuration).toBeGreaterThanOrEqual(2 * 60); // Min 2 minutes
+    });
+  
+    it('should include at least one exercise targeting finger, finger_joints, wrist, or grip_strength', () => {
+      const filter: Filter = {
+        protocolName: 'Short Maximal Hangs',
+        intensityLevel: 'Low',
+        duration: 20,
+      };
+  
+      const warmups = generateWarmups(filter);
+  
+      const hasFingerTarget = warmups.some((warmup) =>
+        warmup.target.some((t) => ['finger', 'finger_joints', 'wrist', 'grip_strength'].includes(t))
+      );
+  
+      expect(hasFingerTarget).toBe(true);
+    });
+  
+    it('should include at least one exercise targeting scapula, upper_back, neck, or rotator_cuff', () => {
+      const filter: Filter = {
+        protocolName: 'Short Maximal Hangs',
+        intensityLevel: 'Low',
+        duration: 20,
+      };
+  
+      const warmups = generateWarmups(filter);
+  
+      const hasScapulaTarget = warmups.some((warmup) =>
+        warmup.target.some((t) => ['scapula', 'upper_back', 'neck', 'rotator_cuff'].includes(t))
+      );
+  
+      expect(hasScapulaTarget).toBe(true);
+    });
+  
+    it('should fill remaining time with optional exercises', () => {
+      const filter: Filter = {
+        protocolName: 'Short Maximal Hangs',
+        intensityLevel: 'Low',
+        duration: 20,
+      };
+  
+      const warmups = generateWarmups(filter);
+  
+      const totalDuration = warmups.reduce((acc, warmup) => {
+        const oneRepDuration = warmup.Duration_s + warmup.Rest_s;
+        const setDuration = oneRepDuration * warmup.Reps + warmup.RestBetweenSets_s;
+        return acc + setDuration * warmup.Sets;
+      }, 0);
+  
+      expect(totalDuration).toBeLessThanOrEqual(10 * 60); // Max 10 minutes
+    });
+  });
+  

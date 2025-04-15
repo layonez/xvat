@@ -1,4 +1,5 @@
 import xvatJson from '../xvat.json' assert { type: 'json' };
+import warmupsJson from '../warmups.json' assert { type: 'json' };
 
 const xvatData: XvatData = xvatJson;
 // Define TypeScript types for the xvat.json structure
@@ -77,4 +78,72 @@ export function generate(filter: Filter): Exercise[] {
 
   // Return the list of exercises
   return durationData.Exercises;
+}
+
+export interface Warmup {
+  Description: string;
+  Additional_Info: string;
+  GripType: string;
+  EdgeType: string;
+  Duration_s: number;
+  Rest_s: number;
+  Reps: number;
+  Sets: number;
+  RestBetweenSets_s: number;
+  Intensity_Modifier: string;
+  target: string[];
+}
+
+export function generateWarmups(filter: Filter): Warmup[] {
+  const { duration } = filter;
+
+  // Calculate target warmup duration (min 2 mins, max 10 mins, 20% of duration)
+  const targetWarmupDuration = Math.min(Math.max(duration * 0.2, 2), 10) * 60; // Convert to seconds
+
+  // Helper function to calculate total duration of a warmup
+  const calculateWarmupDuration = (warmup: Warmup): number => {
+    const oneRepDuration = warmup.Duration_s + warmup.Rest_s;
+    const setDuration = oneRepDuration * warmup.Reps + warmup.RestBetweenSets_s;
+    return setDuration * warmup.Sets;
+  };
+
+  // Separate warmups into required and optional categories
+  const requiredWarmups = warmupsJson.filter((warmup: Warmup) =>
+    warmup.target.some((t) => ["finger", "finger_joints", "wrist", "grip_strength"].includes(t)) ||
+    warmup.target.some((t) => ["scapula", "upper_back", "neck", "rotator_cuff"].includes(t))
+  );
+
+  const optionalWarmups = warmupsJson.filter((warmup: Warmup) =>
+    !requiredWarmups.includes(warmup)
+  );
+
+  // Prioritize required warmups
+  const selectedWarmups: Warmup[] = [];
+  let accumulatedDuration = 0;
+
+  for (const warmup of requiredWarmups) {
+    const warmupDuration = calculateWarmupDuration(warmup);
+    if (accumulatedDuration + warmupDuration <= targetWarmupDuration) {
+      selectedWarmups.push(warmup);
+      accumulatedDuration += warmupDuration;
+    }
+    if (selectedWarmups.some((w) => w.target.some((t) => ["finger", "finger_joints", "wrist", "grip_strength"].includes(t))) &&
+        selectedWarmups.some((w) => w.target.some((t) => ["scapula", "upper_back", "neck", "rotator_cuff"].includes(t)))) {
+      break;
+    }
+  }
+
+  // Fill remaining time with optional warmups
+  for (const warmup of optionalWarmups) {
+    const warmupDuration = calculateWarmupDuration(warmup);
+    if (accumulatedDuration + warmupDuration <= targetWarmupDuration) {
+      selectedWarmups.push(warmup);
+      accumulatedDuration += warmupDuration;
+    }
+    if (accumulatedDuration >= targetWarmupDuration) {
+      break;
+    }
+  }
+
+  return selectedWarmups;
 }
