@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, Trash2 } from "lucide-react"
 import { Exercise } from "../services/seshEngine"
 
 interface ExerciseListScreenProps {
@@ -39,7 +39,7 @@ export function ExerciseListScreen({ onStart, onBack, exercises }: ExerciseListS
             <div className="p-4">
               <div className="flex justify-between items-center">
                 <h2 className="text-lg font-medium">{`${exercise.GripType === "None" ? "" : (exercise.GripType + " ")}${exercise.Description}`}</h2>
-                <ChevronRight className="text-gray-400" />
+                <Trash2 className="text-gray-400" />
               </div>
               <div className="flex  items-start mt-2">
                 <div className="text-gray-400">{exercise.Additional_Info}</div>
