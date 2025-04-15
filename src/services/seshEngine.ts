@@ -42,7 +42,7 @@ interface XvatData {
 export interface Filter {
     protocolName: "Short Maximal Hangs" | "Longer Hangs (Strength-Endurance)" | "Classic 7:3 Repeaters" | "6:10 Heavy Repeaters" | "10:5 Repeaters" | "Frequent Low-Intensity Hangs (e.g., Abrahangs)" | "Active Recovery Hangs";
     intensityLevel: "Low" | "Medium" | "High";
-    duration: 5 | 10 | 15;
+    duration: 10 | 15 | 20 | 25 | 30;
 }
 
 // Load xvat.json data on module initialization

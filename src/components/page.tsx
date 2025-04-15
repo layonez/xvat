@@ -100,8 +100,8 @@ export default function Page() {
             <DurationWheel
               value={filters.duration}
               onChange={(value) => setFilters({ ...filters, duration: value as Filter["duration"] })}
-              min={5}
-              max={20} // Set max to 15 to match original steps
+              min={10}
+              max={30} 
               step={5}
               // Optional: Adjust size if needed
               // size={256}

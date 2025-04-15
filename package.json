@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "extract:targets": "node scripts/extractTargets.js",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
