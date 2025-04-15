@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import DurationWheel from "./DurationWheel"; // Import the new component
-import { Exercise, Filter } from "../services/seshEngine";
+import { Exercise, Filter, Warmup } from "../services/seshEngine";
 import GuidedSession from "./GuidedSession";
-import { generate } from "../services/seshEngine";
+import GuidedWarmup from "./GuidedWarmup"; // Import GuidedWarmup component
+import { generate, generateWarmups } from "../services/seshEngine"; // Import generateWarmups method
 
   // Selector component (Keep as is)
   const Selector = ({ label, value, options, onChange }: { label: string; value: string; options: string[]; onChange: (value: string) => void }) => {
@@ -62,9 +63,14 @@ export default function Page() {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const [session, setSession] = useState<Exercise[] | null>(null);
+  const [warmups, setWarmups] = useState<Warmup[] | null>(null); // State to hold warmups
+  const [warmupComplete, setWarmupComplete] = useState(false); // State to track warmup completion
 
   const startSession = () => {
     try {
+        const generatedWarmups = generateWarmups(filters);
+    setWarmups(generatedWarmups);
+
       const generatedSession = generate(filters);
       setSession(generatedSession);
     } catch (error) {
@@ -72,9 +78,19 @@ export default function Page() {
     }
   };
 
+  if (!warmupComplete && warmups) {
+    return (
+      <GuidedWarmup
+        warmups={warmups}
+        onSessionComplete={() => setWarmupComplete(true)}
+      />
+    );
+  }
+
   if (session) {
     return <GuidedSession exercises={session} onSessionComplete={() => setSession(null)} />;
   }
+  
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
