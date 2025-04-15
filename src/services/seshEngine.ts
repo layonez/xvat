@@ -107,34 +107,57 @@ export function generateWarmups(filter: Filter): Warmup[] {
     return setDuration * warmup.Sets;
   };
 
+  // Shuffle array utility function
+  const shuffleArray = <T>(array: T[]): T[] => {
+    return array
+      .map((item) => ({ item, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ item }) => item);
+  };
+
   // Separate warmups into required and optional categories
-  const requiredWarmups = warmupsJson.filter((warmup: Warmup) =>
-    warmup.target.some((t) => ["finger", "finger_joints", "wrist", "grip_strength"].includes(t)) ||
+  const requiredFingerWarmups = warmupsJson.filter((warmup: Warmup) =>
+    warmup.target.some((t) => ["finger", "finger_joints", "wrist", "grip_strength"].includes(t))
+  );
+
+  const requiredScapulaWarmups = warmupsJson.filter((warmup: Warmup) =>
     warmup.target.some((t) => ["scapula", "upper_back", "neck", "rotator_cuff"].includes(t))
   );
 
   const optionalWarmups = warmupsJson.filter((warmup: Warmup) =>
-    !requiredWarmups.includes(warmup)
+    !requiredFingerWarmups.includes(warmup) && !requiredScapulaWarmups.includes(warmup)
   );
+
+  // Shuffle warmups to introduce fuzziness
+  const shuffledFingerWarmups = shuffleArray(requiredFingerWarmups);
+  const shuffledScapulaWarmups = shuffleArray(requiredScapulaWarmups);
+  const shuffledOptionalWarmups = shuffleArray(optionalWarmups);
 
   // Prioritize required warmups
   const selectedWarmups: Warmup[] = [];
   let accumulatedDuration = 0;
 
-  for (const warmup of requiredWarmups) {
+  // Ensure at least one warmup from each required category
+  for (const warmup of shuffledFingerWarmups) {
     const warmupDuration = calculateWarmupDuration(warmup);
     if (accumulatedDuration + warmupDuration <= targetWarmupDuration) {
       selectedWarmups.push(warmup);
       accumulatedDuration += warmupDuration;
+      break;
     }
-    if (selectedWarmups.some((w) => w.target.some((t) => ["finger", "finger_joints", "wrist", "grip_strength"].includes(t))) &&
-        selectedWarmups.some((w) => w.target.some((t) => ["scapula", "upper_back", "neck", "rotator_cuff"].includes(t)))) {
+  }
+
+  for (const warmup of shuffledScapulaWarmups) {
+    const warmupDuration = calculateWarmupDuration(warmup);
+    if (accumulatedDuration + warmupDuration <= targetWarmupDuration) {
+      selectedWarmups.push(warmup);
+      accumulatedDuration += warmupDuration;
       break;
     }
   }
 
   // Fill remaining time with optional warmups
-  for (const warmup of optionalWarmups) {
+  for (const warmup of shuffledOptionalWarmups) {
     const warmupDuration = calculateWarmupDuration(warmup);
     if (accumulatedDuration + warmupDuration <= targetWarmupDuration) {
       selectedWarmups.push(warmup);
