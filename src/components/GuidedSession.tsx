@@ -35,15 +35,15 @@ function calculateTotalDuration(
   let totalSeconds = initialPrepTime > 0 ? initialPrepTime : 0; // Start with initial prep time only if > 0
 
   exercises.forEach((ex, index) => {
-    if (ex.Sets > 0 && ex.Reps > 0 && ex.HangDuration_s > 0) {
-      const hangsTimePerSet = ex.Reps * ex.HangDuration_s;
-      const restsHangTimePerSet = Math.max(0, ex.Reps - 1) * ex.RestBetweenHangs_s;
+    if (ex.Sets > 0 && ex.Reps > 0 && ex.Duration_s > 0) {
+      const hangsTimePerSet = ex.Reps * ex.Duration_s;
+      const restsHangTimePerSet = Math.max(0, ex.Reps - 1) * ex.Rest_s;
       const timePerSet = hangsTimePerSet + restsHangTimePerSet;
       totalSeconds += ex.Sets * timePerSet;
 
       if (ex.Sets > 1) {
         // TODO: Clarify if RestBetweenSets_min is minutes or seconds. Assuming seconds.
-        totalSeconds += (ex.Sets - 1) * (ex.RestBetweenSets_min);
+        totalSeconds += (ex.Sets - 1) * (ex.RestBetweenSets_s);
       }
 
       if (index < exercises.length - 1 && initialPrepTime > 0) {
@@ -100,16 +100,16 @@ const calculateNextState = (
     switch (currentState.currentPhase) {
         case "PREP":
             nextPhase = "HANG";
-            nextPhaseTimeLeft = exercise.HangDuration_s;
+            nextPhaseTimeLeft = exercise.Duration_s;
             break;
         case "HANG":
             if (currentState.currentRep < exercise.Reps) {
                 nextPhase = "REST_HANG";
-                nextPhaseTimeLeft = exercise.RestBetweenHangs_s;
+                nextPhaseTimeLeft = exercise.Rest_s;
                 nextRep = currentState.currentRep + 1;
             } else if (currentState.currentSet < exercise.Sets) {
                 nextPhase = "REST_SET";
-                nextPhaseTimeLeft = exercise.RestBetweenSets_min; // Assuming seconds
+                nextPhaseTimeLeft = exercise.RestBetweenSets_s; 
                 nextSet = currentState.currentSet + 1;
                 nextRep = 1;
             } else if (currentState.currentExerciseIndex < validExercises.length - 1) {
@@ -125,11 +125,11 @@ const calculateNextState = (
             break;
         case "REST_HANG":
             nextPhase = "HANG";
-            nextPhaseTimeLeft = exercise.HangDuration_s;
+            nextPhaseTimeLeft = exercise.Duration_s;
             break;
         case "REST_SET":
             nextPhase = "HANG";
-            nextPhaseTimeLeft = exercise.HangDuration_s;
+            nextPhaseTimeLeft = exercise.Duration_s;
             break;
         case "FINISHED":
             nextPhase = "FINISHED";
@@ -154,7 +154,7 @@ export default function GuidedSession({
   onSessionComplete,
   initialPrepTime = 5,
 }: GuidedSessionProps) {
-  const validExercises = useMemo(() => exercises.filter(ex => ex.Sets > 0 && ex.Reps > 0 && ex.HangDuration_s > 0), [exercises]);
+  const validExercises = useMemo(() => exercises.filter(ex => ex.Sets > 0 && ex.Reps > 0 && ex.Duration_s > 0), [exercises]);
 
   const totalSessionDuration = useMemo(
     () => calculateTotalDuration(validExercises, initialPrepTime),
@@ -436,7 +436,7 @@ export default function GuidedSession({
       case "REST_HANG":
         return { text: "Rest", colorClass: "text-green-500" };
       case "REST_SET":
-        const setRestDuration = currentExercise ? ` (${formatTime(currentExercise.RestBetweenSets_min)})` : ""; // Assuming seconds
+        const setRestDuration = currentExercise ? ` (${formatTime(currentExercise.RestBetweenSets_s)})` : ""; 
         return { text: `Set Rest${setRestDuration}`, colorClass: "text-yellow-500" };
       case "FINISHED":
         return { text: "Session Complete!", colorClass: "text-green-400" };
@@ -491,10 +491,10 @@ export default function GuidedSession({
                 <p className="text-gray-300">Edge: {currentExercise.EdgeType}</p>
                 <p className="text-gray-300">Set: {sessionState.currentSet} / {currentExercise.Sets}</p>
                 <p className="text-gray-300">Rep: {sessionState.currentRep} / {currentExercise.Reps}</p>
-                {currentExercise.IntensityModifier && <p className="text-sm text-gray-400 mt-1">({currentExercise.IntensityModifier})</p>}
+                {currentExercise.Intensity_Modifier && <p className="text-sm text-gray-400 mt-1">({currentExercise.Intensity_Modifier})</p>}
               </div>
               <div className="h-8 text-gray-400 mt-4 text-md md:text-lg">
-                {sessionState.currentPhase === "REST_HANG" && `Next: Hang (${currentExercise.HangDuration_s}s)`}
+                {sessionState.currentPhase === "REST_HANG" && `Next: Hang (${currentExercise.Duration_s}s)`}
                 {sessionState.currentPhase === "REST_SET" && `Next: Set ${sessionState.currentSet} / Rep 1`}
                 {sessionState.currentPhase === "PREP" && sessionState.currentExerciseIndex > 0 && `Prev: ${validExercises[sessionState.currentExerciseIndex - 1]?.GripType || ''}`}
                  {sessionState.currentPhase === "REST_SET" &&

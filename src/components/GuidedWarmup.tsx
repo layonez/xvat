@@ -532,7 +532,7 @@ export default function GuidedWarmup({
                  {/* Additional Info and Intensity */}
                 {currentWarmup.Intensity_Modifier && <p className="text-sm text-gray-400 mt-1">({currentWarmup.Intensity_Modifier})</p>}
                 {currentWarmup.Additional_Info && <p className="text-sm text-gray-400 mt-1">{currentWarmup.Additional_Info}</p>}
-                {currentWarmup.target && currentWarmup.target.length > 0 && <p className="text-xs text-gray-500 mt-2">Target: {currentWarmup.target.join(', ')}</p>}
+                {currentWarmup.Target && currentWarmup.Target.length > 0 && <p className="text-xs text-gray-500 mt-2">Target: {currentWarmup.Target.join(', ')}</p>}
                </div>
               {/* Contextual "Next" information */}
               <div className="h-8 text-gray-400 mt-4 text-md md:text-lg">

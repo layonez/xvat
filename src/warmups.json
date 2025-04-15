@@ -10,7 +10,7 @@
     "Sets": 1,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "None",
-    "target": ["blood_flow", "full_body", "cardio"]
+    "Target": ["blood_flow", "full_body", "cardio"]
   },
   {
     "Description": "Arm Circles",
@@ -23,7 +23,7 @@
     "Sets": 1,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "Progressive",
-    "target": ["shoulder", "elbow", "range_of_motion"]
+    "Target": ["shoulder", "elbow", "range_of_motion"]
   },
   {
     "Description": "Light Forearm and Finger Massage",
@@ -36,7 +36,7 @@
     "Sets": 1,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "None",
-    "target": ["forearm", "finger", "blood_flow", "recovery"]
+    "Target": ["forearm", "finger", "blood_flow", "recovery"]
   },
   {
     "Description": "Easy Hangs on Jug",
@@ -49,7 +49,7 @@
     "Sets": 2,
     "RestBetweenSets_s": 60,
     "Intensity_Modifier": "Bodyweight",
-    "target": ["finger", "wrist", "forearm", "shoulder", "scapula", "back"]
+    "Target": ["finger", "wrist", "forearm", "shoulder", "scapula", "back"]
   },
   {
     "Description": "Easy Pull-ups on Jugs",
@@ -62,7 +62,7 @@
     "Sets": 2,
     "RestBetweenSets_s": 60,
     "Intensity_Modifier": "Easy",
-    "target": ["back", "biceps", "shoulder", "scapula", "forearm", "wrist"]
+    "Target": ["back", "biceps", "shoulder", "scapula", "forearm", "wrist"]
   },
   {
     "Description": "Scapular Pull-ups",
@@ -75,7 +75,7 @@
     "Sets": 1,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "Light",
-    "target": ["scapula", "shoulder", "upper_back", "forearm"]
+    "Target": ["scapula", "shoulder", "upper_back", "forearm"]
   },
   {
     "Description": "Finger Flicks",
@@ -88,7 +88,7 @@
     "Sets": 1,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "Dynamic",
-    "target": ["finger", "finger_joints", "wrist", "blood_flow", "mobility"]
+    "Target": ["finger", "finger_joints", "wrist", "blood_flow", "mobility"]
   },
   {
     "Description": "Tendon Glides",
@@ -101,7 +101,7 @@
     "Sets": 1,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "Dynamic",
-    "target": ["finger", "finger_joints", "wrist", "tendon", "mobility"]
+    "Target": ["finger", "finger_joints", "wrist", "tendon", "mobility"]
   },
   {
     "Description": "Overcoming Isometric (OIS)",
@@ -114,7 +114,7 @@
     "Sets": 2,
     "RestBetweenSets_s": 60,
     "Intensity_Modifier": "Light to moderate force",
-    "target": ["finger", "forearm", "wrist", "muscle_recruitment"]
+    "Target": ["finger", "forearm", "wrist", "muscle_recruitment"]
   },
   {
     "Description": "Shoulder Shrugs",
@@ -127,7 +127,7 @@
     "Sets": 1,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "Bodyweight",
-    "target": ["shoulder", "neck", "upper_back", "trapezius"]
+    "Target": ["shoulder", "neck", "upper_back", "trapezius"]
   },
   {
     "Description": "Light Banded Shoulder External Rotations",
@@ -140,7 +140,7 @@
     "Sets": 2,
     "RestBetweenSets_s": 10,
     "Intensity_Modifier": "Light tension band",
-    "target": ["shoulder", "rotator_cuff"]
+    "Target": ["shoulder", "rotator_cuff"]
   },
   {
     "Description": "Intrinsic Hand Muscles Warm-up",
@@ -153,7 +153,7 @@
     "Sets": 2,
     "RestBetweenSets_s": 15,
     "Intensity_Modifier": "Light tension",
-    "target": ["hand_intrinsic_muscles", "finger"]
+    "Target": ["hand_intrinsic_muscles", "finger"]
   },
   {
     "Description": "Progressive Hangs",
@@ -166,7 +166,7 @@
     "Sets": 5,
     "RestBetweenSets_s": 5,
     "Intensity_Modifier": "Progressive",
-    "target": ["finger", "forearm", "wrist", "shoulder", "scapula", "back", "muscle_recruitment"]
+    "Target": ["finger", "forearm", "wrist", "shoulder", "scapula", "back", "muscle_recruitment"]
   },
   {
     "Description": "Yielding Isometric (YISO) Contractions",
@@ -179,7 +179,7 @@
     "Sets": 2,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "60-80% of Max OISO",
-    "target": ["finger", "forearm", "wrist", "shoulder", "back", "muscle_recruitment"]
+    "Target": ["finger", "forearm", "wrist", "shoulder", "back", "muscle_recruitment"]
   },
   {
     "Description": "Hollow Body Holds",
@@ -192,7 +192,7 @@
     "Sets": 1,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "Light",
-    "target": ["core", "abdomen"]
+    "Target": ["core", "abdomen"]
   },
   {
     "Description": "Wrist Rotations",
@@ -205,7 +205,7 @@
     "Sets": 1,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "Light",
-    "target": ["wrist", "forearm", "mobility"]
+    "Target": ["wrist", "forearm", "mobility"]
   },
   {
     "Description": "Shoulder Rotations",
@@ -218,7 +218,7 @@
     "Sets": 1,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "Light",
-    "target": ["shoulder", "mobility", "range_of_motion"]
+    "Target": ["shoulder", "mobility", "range_of_motion"]
   },
   {
     "Description": "Hands on Edge, Light Pull (3/10 Effort)",
@@ -231,7 +231,7 @@
     "Sets": 1,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "3/10 Effort",
-    "target": ["finger", "forearm", "wrist", "neural_activation"]
+    "Target": ["finger", "forearm", "wrist", "neural_activation"]
   },
   {
     "Description": "Hanging from Pull-up Bar (Stretch)",
@@ -244,7 +244,7 @@
     "Sets": 1,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "Passive Hang",
-    "target": ["shoulder", "back", "lats", "spine", "stretch", "decompression", "forearm", "wrist"]
+    "Target": ["shoulder", "back", "lats", "spine", "stretch", "decompression", "forearm", "wrist"]
   },
   {
     "Description": "Weighted \"No Hangs\"",
@@ -257,7 +257,7 @@
     "Sets": 2,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "40% BW, 75% BW",
-    "target": ["finger", "forearm", "wrist", "muscle_activation"]
+    "Target": ["finger", "forearm", "wrist", "muscle_activation"]
   },
   {
     "Description": "Bodyweight Hangs on Progressively Smaller Edges",
@@ -270,7 +270,7 @@
     "Sets": 5,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "Bodyweight",
-    "target": ["finger", "forearm", "wrist", "shoulder", "scapula", "back", "grip_strength"]
+    "Target": ["finger", "forearm", "wrist", "shoulder", "scapula", "back", "grip_strength"]
   },
   {
     "Description": "Move Around on Hangboard with Feet on Chair",
@@ -283,7 +283,7 @@
     "Sets": 1,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "Progressive",
-    "target": ["finger", "forearm", "wrist", "elbow", "shoulder", "scapula", "back", "blood_flow", "movement_pattern"]
+    "Target": ["finger", "forearm", "wrist", "elbow", "shoulder", "scapula", "back", "blood_flow", "movement_pattern"]
   },
   {
     "Description": "Light Massage with Armaid",
@@ -296,7 +296,7 @@
     "Sets": 1,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "Very Light",
-    "target": ["forearm", "blood_flow", "relaxation", "recovery"]
+    "Target": ["forearm", "blood_flow", "relaxation", "recovery"]
   },
   {
     "Description": "Pull-ups on Best Slopers",
@@ -309,7 +309,7 @@
     "Sets": 2,
     "RestBetweenSets_s": 10,
     "Intensity_Modifier": "Moderate",
-    "target": ["back", "biceps", "shoulder", "scapula", "forearm", "wrist", "finger", "grip_strength"]
+    "Target": ["back", "biceps", "shoulder", "scapula", "forearm", "wrist", "finger", "grip_strength"]
   },
   {
     "Description": "40 Second Jug Hang",
@@ -322,7 +322,7 @@
     "Sets": 1,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "Light",
-    "target": ["forearm", "finger", "wrist", "shoulder", "scapula", "grip_endurance"]
+    "Target": ["forearm", "finger", "wrist", "shoulder", "scapula", "grip_endurance"]
   },
   {
     "Description": "Pull-ups on Largest Edge",
@@ -335,7 +335,7 @@
     "Sets": 2,
     "RestBetweenSets_s": 20,
     "Intensity_Modifier": "Moderate",
-    "target": ["back", "biceps", "shoulder", "scapula", "forearm", "wrist"]
+    "Target": ["back", "biceps", "shoulder", "scapula", "forearm", "wrist"]
   },
   {
     "Description": "Scapular Press-ups",
@@ -348,7 +348,7 @@
     "Sets": 1,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "Dynamic",
-    "target": ["scapula", "shoulder", "chest", "triceps", "mobility"]
+    "Target": ["scapula", "shoulder", "chest", "triceps", "mobility"]
   },
   {
     "Description": "Elastic Exercises (Triceps and Shoulders)",
@@ -361,6 +361,6 @@
     "Sets": 1,
     "RestBetweenSets_s": 0,
     "Intensity_Modifier": "Light Resistance",
-    "target": ["triceps", "shoulder", "elbow"]
+    "Target": ["triceps", "shoulder", "elbow"]
   }
 ]

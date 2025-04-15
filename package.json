@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "extract:targets": "node scripts/extractTargets.js",
+    "extract:targets": "node scripts/flatten_workouts.js",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
