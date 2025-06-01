@@ -136,12 +136,7 @@ const calculateNextWarmupState = (
             // Finished resting between reps, start next rep's work
             nextPhase = "WORK";
             nextPhaseTimeLeft = warmup.Duration_s;
-            break;
-        case "REST_SET":
-            // Finished resting between sets, start first rep of next set's work
-            nextPhase = "WORK";
-            nextPhaseTimeLeft = warmup.Duration_s;
-            break;
+        break;
         case "FINISHED":
             // Stay finished
             nextPhase = "FINISHED";
