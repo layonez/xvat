@@ -94,7 +94,7 @@ describe('seshEngine.generateWarmups', () => {
       const warmups = generateWarmups(filter);
   
       const hasFingerTarget = warmups.some((warmup) =>
-        warmup.Target.some((t) => ['finger', 'finger_joints', 'wrist', 'grip_strength'].includes(t))
+        warmup.Target?.some((t) => ['finger', 'finger_joints', 'wrist', 'grip_strength'].includes(t))
       );
   
       expect(hasFingerTarget).toBe(true);
@@ -110,7 +110,7 @@ describe('seshEngine.generateWarmups', () => {
       const warmups = generateWarmups(filter);
   
       const hasScapulaTarget = warmups.some((warmup) =>
-        warmup.Target.some((t) => ['scapula', 'upper_back', 'neck', 'rotator_cuff'].includes(t))
+        warmup.Target?.some((t) => ['scapula', 'upper_back', 'neck', 'rotator_cuff'].includes(t))
       );
   
       expect(hasScapulaTarget).toBe(true);
