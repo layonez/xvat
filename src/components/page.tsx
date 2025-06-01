@@ -5,7 +5,7 @@ import GuidedSession from "./GuidedSession";
 import GuidedWarmup from "./GuidedWarmup"; // Import GuidedWarmup component
 import { generate, generateWarmups } from "../services/seshEngine"; // Import generateWarmups method
 import { ExerciseListScreen } from "./Exercises"; // Import ExerciseListScreen
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
   // Selector component (Keep as is)
   const Selector = ({ label, value, options, onChange }: { label: string; value: string; options: string[]; onChange: (value: string) => void }) => {
@@ -55,6 +55,29 @@ import { useRef, useState } from "react";
   };
   
 export default function Page() {
+  // PWA Install button logic
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [showInstall, setShowInstall] = useState(false);
+
+  useEffect(() => {
+    const handler = (e: any) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShowInstall(true);
+    };
+    window.addEventListener('beforeinstallprompt', handler);
+    return () => window.removeEventListener('beforeinstallprompt', handler);
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    // Optionally, you can show a toast or log
+    setDeferredPrompt(null);
+    setShowInstall(false);
+    console.log(`User response: ${outcome}`);
+  };
   const [filters, setFilters] = useState<Filter>({
     protocolName: "Short Maximal Hangs",
     intensityLevel: "Low",
@@ -261,6 +284,16 @@ export default function Page() {
               </div>
 
               {/* Start button */}
+              {showInstall && (
+                <button
+                  className="w-full bg-[#317EFB] text-white py-3 rounded-full text-base font-medium mb-3 flex items-center justify-center gap-2 shadow"
+                  onClick={handleInstallClick}
+                  style={{letterSpacing: 1}}
+                >
+                  <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" className="inline-block mr-1"><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v12m0 0l-4-4m4 4l4-4m-7 7h10"/></svg>
+                  Install App
+                </button>
+              )}
               <button
                 className="w-full bg-[#2196f3] text-white py-4 rounded-full text-xl font-medium"
                 onClick={startSession}
