@@ -1,36 +1,36 @@
 import exercisesJson from '../workouts.json' assert { type: 'json' };
 import warmupsJson from '../warmups.json' assert { type: 'json' };
 
-const workouts: Workout[] = exercisesJson;
+const workouts: Workout[] = exercisesJson as Workout[];
 
 export interface Exercise {
-    Description: string;
-    Additional_Info: string;
-    GripType: string;
-    EdgeType: string;
-    Duration_s: number;
-    Rest_s: number;
-    Reps: number;
-    Sets: number;
-    RestBetweenSets_s: number;
-    Intensity_Modifier: string;
-    Target?: string[];
+  Description: string;
+  Additional_Info: string;
+  GripType: string;
+  EdgeType: string;
+  Duration_s: number;
+  Rest_s: number;
+  Reps: number;
+  Sets: number;
+  RestBetweenSets_s: number;
+  Intensity_Modifier: string;
+  Target?: string[];
 }
 
 export interface Workout {
-    Protocol: string | "Short Maximal Hangs" | "Longer Hangs (Strength-Endurance)" | "Classic 7:3 Repeaters" | "6:10 Heavy Repeaters" | "10:5 Repeaters" | "Frequent Low-Intensity Hangs (e.g., Abrahangs)" | "Active Recovery Hangs";
-    IntensityLevel: string | "Low" | "Medium" | "High";
-    Duration: string | 10 | 15 | 20 | 25 | 30;
-    Description: string;
-    EstimatedTime: string;
-    Exercises: Exercise[];
+  Protocol: "Short Maximal Hangs" | "Longer Hangs (Strength-Endurance)" | "Classic 7:3 Repeaters" | "6:10 Heavy Repeaters" | "10:5 Repeaters" | "Frequent Low-Intensity Hangs (e.g., Abrahangs)" | "Active Recovery Hangs";
+  IntensityLevel: "Low" | "Medium" | "High";
+  Duration: 10 | 15 | 20 | 25 | 30;
+  Description: string;
+  EstimatedTime: string;
+  Exercises: Exercise[];
 }
-  
+
 
 export interface Filter {
-    protocolName: "Short Maximal Hangs" | "Longer Hangs (Strength-Endurance)" | "Classic 7:3 Repeaters" | "6:10 Heavy Repeaters" | "10:5 Repeaters" | "Frequent Low-Intensity Hangs (e.g., Abrahangs)" | "Active Recovery Hangs";
-    intensityLevel: "Low" | "Medium" | "High";
-    duration: 10 | 15 | 20 | 25 | 30;
+  protocolName: "Short Maximal Hangs" | "Longer Hangs (Strength-Endurance)" | "Classic 7:3 Repeaters" | "6:10 Heavy Repeaters" | "10:5 Repeaters" | "Frequent Low-Intensity Hangs (e.g., Abrahangs)" | "Active Recovery Hangs";
+  intensityLevel: "Low" | "Medium" | "High";
+  duration: 10 | 15 | 20 | 25 | 30;
 }
 
 export function generate(filter: Filter): Exercise[] {
