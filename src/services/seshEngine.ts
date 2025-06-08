@@ -18,7 +18,7 @@ export interface Exercise {
 }
 
 export interface Workout {
-  Protocol: "Short Maximal Hangs" | "Longer Hangs (Strength-Endurance)" | "Classic 7:3 Repeaters" | "6:10 Heavy Repeaters" | "10:5 Repeaters" | "Frequent Low-Intensity Hangs (e.g., Abrahangs)" | "Active Recovery Hangs";
+  Protocol: "Short Maximal Hangs" | "Longer Hangs (Strength-Endurance)" | "Classic 7:3 Repeaters" | "6:10 Heavy Repeaters" | "10:5 Repeaters" | "Frequent Low-Intensity Hangs (e.g., Abrahangs)" | "Active Recovery Hangs" | "Isometric protocol";
   IntensityLevel: "Low" | "Medium" | "High";
   Duration: 10 | 15 | 20 | 25 | 30;
   Description: string;
@@ -28,7 +28,7 @@ export interface Workout {
 
 
 export interface Filter {
-  protocolName: "Short Maximal Hangs" | "Longer Hangs (Strength-Endurance)" | "Classic 7:3 Repeaters" | "6:10 Heavy Repeaters" | "10:5 Repeaters" | "Frequent Low-Intensity Hangs (e.g., Abrahangs)" | "Active Recovery Hangs";
+  protocolName: "Short Maximal Hangs" | "Longer Hangs (Strength-Endurance)" | "Classic 7:3 Repeaters" | "6:10 Heavy Repeaters" | "10:5 Repeaters" | "Frequent Low-Intensity Hangs (e.g., Abrahangs)" | "Active Recovery Hangs" | "Isometric protocol";
   intensityLevel: "Low" | "Medium" | "High";
   duration: 10 | 15 | 20 | 25 | 30;
 }

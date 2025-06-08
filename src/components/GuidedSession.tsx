@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useCallback, useRef } from "react"; // Import useRef
 import { motion } from "framer-motion";
+import { Volume2, VolumeX } from 'lucide-react';
 import { Exercise } from "../services/seshEngine"; // Assuming this path is correct
 import restAudioSrc from '/src/assets/rest.mp3'; // Ensure path is correct
 import startAudioSrc from '/src/assets/start.mp3'; // Ensure path is correct
@@ -170,6 +171,8 @@ export default function GuidedSession({
     totalTimeLeft: totalSessionDuration,
     isPaused: false,
   }));
+  // --- Music On/Off State ---
+  const [musicOn, setMusicOn] = useState<boolean>(true);
 
   const currentExercise = validExercises[sessionState.currentExerciseIndex];
 
@@ -273,13 +276,12 @@ export default function GuidedSession({
     onSessionComplete
   ]);
 
-  // --- Audio Control Logic --- <<< ADDED
+  // --- Audio Control Logic --- <<< MODIFIED for music toggle
   useEffect(() => {
     const restAudio = restAudioRef.current;
     const startAudio = startAudioRef.current;
 
     if (!restAudio || !startAudio || !audioInitialized.current) {
-        // console.log("Audio not ready or not initialized");
         return; // Don't proceed if audio isn't set up
     }
 
@@ -288,37 +290,32 @@ export default function GuidedSession({
 
     // --- Handle Paused State ---
     if (sessionState.isPaused) {
-      // console.log("Audio: Paused state detected, pausing audio");
       if (!restAudio.paused) restAudio.pause();
       if (!startAudio.paused) startAudio.pause();
-      return; // Exit early if paused
+      return;
     }
 
-    // --- Rest Audio Playback ---
-    if (isRestPhase) {
+    // --- Rest Audio Playback (MUSIC) ---
+    if (isRestPhase && musicOn) {
       if (restAudio.paused) {
-        // console.log("Audio: Playing rest audio");
         const playPromise = restAudio.play();
         if (playPromise !== undefined) {
           playPromise.catch(error => {
             console.error("Error attempting to play rest audio:", error);
-            // Might be due to browser autoplay restrictions requiring user interaction first
           });
         }
       }
     } else {
-      // If not in a rest phase, ensure rest audio is stopped
+      // If not in a rest phase or music is off, ensure rest audio is stopped
       if (!restAudio.paused) {
-        // console.log("Audio: Pausing rest audio");
         restAudio.pause();
-        restAudio.currentTime = 0; // Reset playback position
+        restAudio.currentTime = 0;
       }
     }
 
-    // --- Start Audio Playback (Countdown) ---
-    if (isPreHangPhase && sessionState.phaseTimeLeft === 3) { // Exactly 3 seconds left before hang
-      // console.log(`Audio: Playing start audio (3s before HANG in ${sessionState.currentPhase})`);
-      startAudio.currentTime = 0; // Rewind to start
+    // --- Start Audio Playback (Countdown, BEEP) ---
+    if (isPreHangPhase && sessionState.phaseTimeLeft === 3) {
+      startAudio.currentTime = 0;
       const playPromise = startAudio.play();
       if (playPromise !== undefined) {
         playPromise.catch(error => {
@@ -328,7 +325,7 @@ export default function GuidedSession({
     }
     // No need to explicitly stop startAudio as it doesn't loop
 
-  }, [sessionState.currentPhase, sessionState.phaseTimeLeft, sessionState.isPaused]);
+  }, [sessionState.currentPhase, sessionState.phaseTimeLeft, sessionState.isPaused, musicOn]);
 
 
   // --- Event Handlers --- (Keep Existing)
@@ -462,8 +459,27 @@ export default function GuidedSession({
   }
 
   // Main container
- return (
+  return (
     <div className="h-screen w-full bg-[#1a1512] text-white flex flex-col justify-between p-4 overflow-hidden">
+      {/* Music Toggle Icon */}
+      <button
+        aria-label={musicOn ? 'Turn music off' : 'Turn music on'}
+        onClick={() => setMusicOn((on) => !on)}
+        style={{
+          position: 'fixed',
+          top: 16,
+          right: 16,
+          zIndex: 1000,
+          background: 'rgba(30,30,30,0.7)',
+          border: 'none',
+          borderRadius: '50%',
+          padding: 8,
+          cursor: 'pointer',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+        }}
+      >
+        {musicOn ? <Volume2 size={28} color="#fff" /> : <VolumeX size={28} color="#fff" />}
+      </button>
 
       {/* Top Section (Exercise Info + Timer) */}
       <div className="flex-grow flex flex-col items-center justify-center text-center w-full max-w-md mx-auto">

@@ -1966,5 +1966,26 @@
         "RestBetweenSets_s": 120
       }
     ]
+  },
+  {
+    "Protocol": "Isometric protocol",
+    "IntensityLevel": "Medium",
+    "Duration": 10,
+    "Description": "A sub-maximal isometric protocol designed to build strength and high-end endurance through accumulated time under a specific, sustained load. The @70% effort ensures high-quality contractions without reaching failure on individual hangs.",
+    "EstimatedTime": "Approx 10 min hanging work block (excluding warm-up/long rests)",
+    "Exercises": [
+      {
+        "Description": "Half-Crimp on Medium Edge (20mm)",
+        "Additional_Info": "Focus on maintaining perfect, engaged form for the entire 10-second duration of each repetition.",
+        "GripType": "Half-Crimp",
+        "EdgeType": "Medium Edge (20mm)",
+        "Reps": 10,
+        "Sets": 1,
+        "Duration_s": 10,
+        "Rest_s": 50,
+        "Intensity_Modifier": "Load at ~70% of maximum added weight. (i.e. Bodyweight + 70% of your max *added* weight for a 10s hang).",
+        "RestBetweenSets_s": 0
+      }
+    ]
   }
 ]

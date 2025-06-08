@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import restAudioSrc from '/src/assets/rest.mp3'; // Adjust path if needed
 import startAudioSrc from '/src/assets/start.mp3'; // Adjust path if needed
 import { Exercise } from "../services/seshEngine";
+import { Volume2, VolumeX } from "lucide-react";
 
 interface GuidedWarmupProps {
   warmups: Exercise[];
@@ -181,6 +182,8 @@ export default function GuidedWarmup({
     totalTimeLeft: totalWarmupDuration,
     isPaused: false,
   }));
+  // --- Music On/Off State ---
+  const [musicOn, setMusicOn] = useState(true);
 
   // Get the current warmup item based on the index
   const currentWarmup = validWarmups[sessionState.currentWarmupIndex];
@@ -284,33 +287,25 @@ export default function GuidedWarmup({
     onSessionComplete // Include callback in dependencies
   ]);
 
-  // --- Audio Control Logic ---
+  // --- Audio Control Logic (MUSIC toggle) ---
   useEffect(() => {
     const restAudio = restAudioRef.current;
     const startAudio = startAudioRef.current;
+    if (!restAudio || !startAudio || !audioInitialized.current) return;
 
-    if (!restAudio || !startAudio || !audioInitialized.current) {
-        // console.log("Audio not ready or not initialized");
-        return; // Don't proceed if audio isn't set up
-    }
-
-    // Determine if the current phase is any type of rest
     const isRestPhase = sessionState.currentPhase === "REST_REP" || sessionState.currentPhase === "REST_SET";
-    // Determine if the phase is one that precedes the main work phase (WORK)
     const isPreWorkPhase = sessionState.currentPhase === "PREP" || sessionState.currentPhase === "REST_REP" || sessionState.currentPhase === "REST_SET";
 
-    // --- Handle Paused State ---
+    // Handle Paused State
     if (sessionState.isPaused) {
-      // console.log("Audio: Paused state detected, pausing audio");
       if (!restAudio.paused) restAudio.pause();
       if (!startAudio.paused) startAudio.pause();
-      return; // Exit early if paused
+      return;
     }
 
-    // --- Rest Audio Playback ---
-    if (isRestPhase) {
+    // Rest Audio (MUSIC)
+    if (isRestPhase && musicOn) {
       if (restAudio.paused) {
-        // console.log("Audio: Playing rest audio");
         const playPromise = restAudio.play();
         if (playPromise !== undefined) {
           playPromise.catch(error => {
@@ -319,19 +314,15 @@ export default function GuidedWarmup({
         }
       }
     } else {
-      // If not in a rest phase, ensure rest audio is stopped and reset
       if (!restAudio.paused) {
-        // console.log("Audio: Pausing rest audio");
         restAudio.pause();
-        restAudio.currentTime = 0; // Reset playback position
+        restAudio.currentTime = 0;
       }
     }
 
-    // --- Start Audio Playback (Countdown before WORK) ---
-    // Play the 'start' sound 3 seconds before the WORK phase begins
+    // Start Audio (BEEP)
     if (isPreWorkPhase && sessionState.phaseTimeLeft === 3) {
-      // console.log(`Audio: Playing start audio (3s before WORK in ${sessionState.currentPhase})`);
-      startAudio.currentTime = 0; // Rewind to start
+      startAudio.currentTime = 0;
       const playPromise = startAudio.play();
       if (playPromise !== undefined) {
         playPromise.catch(error => {
@@ -339,9 +330,8 @@ export default function GuidedWarmup({
         });
       }
     }
-    // No need to explicitly stop startAudio as it's short and doesn't loop
-
-  }, [sessionState.currentPhase, sessionState.phaseTimeLeft, sessionState.isPaused]); // Dependencies for audio effect
+    // No need to explicitly stop startAudio as it doesn't loop
+  }, [sessionState.currentPhase, sessionState.phaseTimeLeft, sessionState.isPaused, musicOn]);
 
 
   // --- Event Handlers ---
@@ -487,8 +477,27 @@ export default function GuidedWarmup({
   }
 
   // Main component layout
- return (
+  return (
     <div className="h-screen w-full bg-[#1a1512] text-white flex flex-col justify-between p-4 overflow-hidden">
+      {/* Music Toggle Icon */}
+      <button
+        aria-label={musicOn ? 'Turn music off' : 'Turn music on'}
+        onClick={() => setMusicOn((on) => !on)}
+        style={{
+          position: 'fixed',
+          top: 16,
+          right: 16,
+          zIndex: 1000,
+          background: 'rgba(30,30,30,0.7)',
+          border: 'none',
+          borderRadius: '50%',
+          padding: 8,
+          cursor: 'pointer',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+        }}
+      >
+        {musicOn ? <Volume2 size={28} color="#fff" /> : <VolumeX size={28} color="#fff" />}
+      </button>
 
       {/* Top Section (Warmup Info + Timer) */}
       <div className="flex-grow flex flex-col items-center justify-center text-center w-full max-w-md mx-auto pt-10"> {/* Added pt-10 for space from top */}

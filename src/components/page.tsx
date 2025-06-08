@@ -79,8 +79,8 @@ export default function Page() {
     console.log(`User response: ${outcome}`);
   };
   const [filters, setFilters] = useState<Filter>({
-    protocolName: "Short Maximal Hangs",
-    intensityLevel: "Low",
+    protocolName: "Isometric protocol",
+    intensityLevel: "Medium",
     duration: 10,
   });
   const [menuOpen, setMenuOpen] = useState(false);
@@ -211,6 +211,7 @@ export default function Page() {
                       "10:5 Repeaters",
                       "Frequent Low-Intensity Hangs (e.g., Abrahangs)",
                       "Active Recovery Hangs",
+                      "Isometric protocol",
                     ]}
                     onChange={(value) => setFilters({ ...filters, protocolName: value as Filter["protocolName"] })}
                   />
